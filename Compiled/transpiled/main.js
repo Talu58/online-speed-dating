@@ -12553,6 +12553,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//considerations profile button in dropdown if user already logged in?
 	var profile = {
 	  name: 'profile',
 	  template: _profileTemplate2.default.template,
