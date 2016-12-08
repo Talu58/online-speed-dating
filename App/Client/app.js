@@ -10,6 +10,7 @@ import profileCreate from './Views/profileCreationController.js';
 import Vuex from 'vuex';
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 var store = new Vuex.Store({
   state: {
