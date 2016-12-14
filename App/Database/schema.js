@@ -1,24 +1,35 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
-var SALT_WORK_FACTOR = 10;
+// var bcrypt = require('bcrypt-nodejs');
+// var SALT_WORK_FACTOR = 10;
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true } },
+  // email: {type: String, required: true},
   password: {type: String, required: true},
-  salt: String,
-  userinfo: String,
-  name: String,
+  // salt: String,
+  userinfo: {type: String, required: true, default: ''},
+  name: {type: String, required: true, default: ''},
   age: {type: Number, default: '0'},
-  location: String,
-  profileImg: {type: String, default: 'https://www.svgimages.com/svg-image/s4/question-mark-face-256x256.png'},
-  gender: String,
+  location: {type: String, required: true, default: ''},
+  profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
+  gender: {type: String, required: true, default: ''},
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
   callList: {type: Array, default: []},
   matches: {type: Array, default: []}
 });
 
-//TODO:
+/////// Start of Encryption ///////
+userSchema.methods.checkPassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+
+    if (err) {
+      return cb(err);
+    }
+    cb (null, isMatch)
+  })
+};
+
 userSchema.pre('save', function(next){
   var user = this;
 
@@ -41,15 +52,8 @@ userSchema.pre('save', function(next){
   });
 })
 
-userSchema.methods.checkPassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+/////// End of Encryption ///////
 
-    if (err) {
-      return cb(err);
-    }
-    cb (null, isMatch)
-  })
-}
 
 var eventSchema = mongoose.Schema({
   date: {type: Date, required: true },
