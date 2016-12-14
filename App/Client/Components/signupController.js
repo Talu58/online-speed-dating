@@ -5,7 +5,11 @@ var signup = {
   data: function() {
     return {
       username: '',
-      password: ''
+      password: '',
+      age: '',
+      gender: '',
+      location: '',
+      interestedIn: ''
     };
   },
 
@@ -14,9 +18,13 @@ var signup = {
       var body = {
         username: this.username,
         password: this.password,
+        gender: this.gender,
+        age: this.age,
+        location: this.location,
+        interestedIn: this.interestedIn,
         admin: false
       };
-
+      console.log('body: ', body);
       this.$http.post('/api/user', body)
       .then((response) => {
         this.login();
