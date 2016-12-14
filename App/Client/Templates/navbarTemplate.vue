@@ -16,6 +16,9 @@
         <li><a href="#" v-on:click.prevent="goToEditProfile"><span class="glyphicon glyphicon-cog"></a></li>
         <li><a href="#" v-on:click.prevent="logout">Logout</a></li>
       </ul>
+      <form v-else class="navbar-form nav navbar-nav navbar-right">
+        <login></login>
+      </form>
   </div><!-- /.container-fluid -->
 </nav>
 </template>

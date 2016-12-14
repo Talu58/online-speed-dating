@@ -41,12 +41,12 @@
     #profileUpdateBackground {
         width: 100%;
     }
-    
+
     #updateForm {
         padding-top: 5px;
         padding-bottom: 5px;
     }
-    
+
     #updateTitle {
         color: #3D403D;
     }
