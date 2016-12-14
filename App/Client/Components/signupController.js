@@ -5,23 +5,31 @@ var signup = {
   data: function() {
     return {
       username: '',
-      password: ''
+      password: '',
+      age: '',
+      gender: '',
+      location: '',
+      interestedIn: ''
     };
   },
 
-  methods: {   
+  methods: {
     signup: function($http) {
       var body = {
         username: this.username,
         password: this.password,
+        gender: this.gender,
+        age: this.age,
+        location: this.location,
+        interestedIn: this.interestedIn,
         admin: false
       };
-
+      console.log('body: ', body);
       this.$http.post('/api/user', body)
       .then((response) => {
         this.login();
       })
-      
+
       .catch((err) => {
         alert('username already exists');
       });
@@ -30,9 +38,9 @@ var signup = {
     login: function() {
       this.$http.post('/auth/login', {
         username: this.username,
-        password: this.password 
+        password: this.password
       })
-      .then((res) => { 
+      .then((res) => {
         var body = res.body;
         this.$http.get('/api/events')
           .then((res) => {
@@ -40,9 +48,9 @@ var signup = {
           });
         this.$store.commit('setUser', body);
         this.$store.commit('setSavedEvents', body.events);
-        this.$router.push('/')
+        this.$router.push('/myprofile/' + this.username);
       })
-      .catch((err) => console.error(err)); 
+      .catch((err) => console.error(err));
     }
   }
 };
