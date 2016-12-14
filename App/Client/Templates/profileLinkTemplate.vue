@@ -1,22 +1,6 @@
 <template>
     <div>
         <div v-if='this.$store.state.user.username'>
-
-            <p class="navbar-text">Welcome, {{this.$store.state.user.username}} !!</p>
-
-
-            <h2>Profile Options</h2>
-            <ul>
-                <li>
-                    <button v-on:click.prevent="goToMyProfile" type="submit" class="btn btn-primary btn-block">My Room</button>
-                </li>
-                <li>
-                    <button v-on:click.prevent="editProfile" type="submit" class="btn btn-primary btn-block">Update Profile</button>
-                </li>
-                <li>
-                    <button v-on:click.prevent="goToProfile" type="submit" class="btn btn-primary btn-block">Profile</button>
-                </li>
-            </ul>
         </div>
         <div v-else>
 
