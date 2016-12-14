@@ -4,7 +4,7 @@
     <img class="background" :src="background" alt="backgroundImage">
         {{ msg }}
     </div>
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-3 col-md-offset-7">
       <profilelink></profilelink>
     </div>
     <aboutus></aboutus>

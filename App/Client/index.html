@@ -40,8 +40,10 @@
                                 <router-link to='/events'><a href="#">Events</a>
                                 </router-link>
                             </li>
+                            <li class="active">
+                                <logout></logout>
+                            </li>
                         </ul>
-                        <button v-if='this.$store.state.user.username === undefined'> Logout </button>
                         <!-- <profilelink></profilelink> -->
                     </div>
                     <!-- /.navbar-collapse -->
