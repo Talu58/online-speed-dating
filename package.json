@@ -30,7 +30,7 @@
     "babel-preset-stage-0": "^6.1.2",
     "babel-preset-vue": "^0.1.0",
     "babel-runtime": "^5.8.38",
-    "bcrypt": "^0.8.7",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "connect-ensure-login": "^0.1.1",

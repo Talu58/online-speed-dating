@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
+var SALT_WORK_FACTOR = 10;
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true } },
-  password: String,
+  password: {type: String, required: true},
+  salt: String,
   userinfo: {type: String, default: 'User did not provide info'},
   name: {type: String, default: 'please fill out'},
   age: {type: Number, default: '0'},
@@ -15,6 +18,39 @@ var userSchema = mongoose.Schema({
   matches: {type: Array, default: []}
 });
 
+//TODO:
+userSchema.pre('save', function(next){
+  var user = this;
+
+  if (!user.isModified('password')) {
+    return next();
+  }
+
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if (err) {
+      return next(err);
+    }
+    bcrypt.hash(user.password, salt, null, function(err, hash){
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      user.salt = salt;
+      next();
+    });
+  });
+})
+
+userSchema.methods.checkPassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+
+    if (err) {
+      return cb(err);
+    }
+    cb (null, isMatch)
+  })
+}
+
 var eventSchema = mongoose.Schema({
   date: {type: Date, required: true },
   usernames: {type: Array, default: []},
@@ -23,6 +59,6 @@ var eventSchema = mongoose.Schema({
   eventCallDuration: {type: Number, default: 300000},
 });
 
- 
+
 exports.userSchema = userSchema;
 exports.eventSchema = eventSchema;
