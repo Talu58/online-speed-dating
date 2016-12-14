@@ -7,10 +7,11 @@ var myProfile = {
   template: temp.template,
   data: function() {
     return {
-      msg: 'Welcome To Do-We! ' + this.$store.state.user.username,
+      msg: `${this.$store.state.user.username} Welcome To Do-We!`,
       background: '../Images/background.jpg',
       savedEvents: '',
-      match: true
+      match: true,
+      user: this.$store.getters.getProfileInfo,
     };
   },
   computed: {
@@ -18,9 +19,9 @@ var myProfile = {
       return this.$store.state.savedEvents;
     }
   },
-  created () {
-    this.loadUserProfile();
-  },
+  // created () {
+  //   this.loadUserProfile();
+  // },
   watch: {
     '$route': 'checkRoute'
   },
@@ -31,24 +32,27 @@ var myProfile = {
     editProfile () {
       this.$router.push('/myprofile/' + this.username + '/edit');
     },
-    setProfileInfo (res) {
-      for (var key in res) {
-        this[key] = res[key];
-      }
-    },
-    loadUserProfile () {
-      if (this.$route.params.id !== this.$store.state.user.username) {
-        this.$http.get(
-          '/api/user',
-          { params: {username: this.$route.params.id}}
-        )
-        .then((res)=>{
-          this.setProfileInfo(res.body);
-        });
-      } else {
-        this.setProfileInfo(this.$store.getters.getProfileInfo);
-      }
-    },
+    // loadUserProfile () {
+    //   if(!this.$store.getters.getProfileInfo) {
+    //     this.$http.get('/api/user', { params: {username: this.$route.params.id}})
+    //     .then((res)=> {
+    //       console.log("NEW USER", res.body, this.$store.state);
+    //       this.$store.setUser(this.$store.state, res.body);
+    //     })
+    //   } else {
+    //     console.log('ELSE', this.$store.getters.getProfileInfo);
+    //     return this.$store.getters.getProfileInfo;
+    //   }
+    //   // if (this.$route.params.id !== this.$store.state.user.username) {
+    //   //   this.$http.get('/api/user', { params: {username: this.$route.params.id}})
+    //   //   .then((res)=> {
+    //   //     console.log("RES.BODY", res.body);
+    //   //     return this.setProfileInfo(res.body);
+    //   //   });
+    //   // } else {
+    //   //   this.setProfileInfo(this.$store.getters.getProfileInfo);
+    //   // }
+    // },
     moment (date) {
       return moment(date);
     },
