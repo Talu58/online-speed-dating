@@ -7,8 +7,7 @@ import store from './store.js';
 
 import login from './Components/loginController.js';
 import profileLink from './Components/profileLinkController.js';
-import logout from './Components/logoutController.js';
-import logo from './Components/logoController.js';
+import navbar from './Components/navbarController.js';
 
 import aboutus from './Components/aboutUsController.js';
 import techstack from './Components/techStackController.js';
@@ -19,8 +18,7 @@ Vue.use(VueRouter);
 Vue.component('login', login);
 Vue.component('profilelink', profileLink);
 Vue.component('aboutus', aboutus);
-Vue.component('logout', logout);
-Vue.component('logo', logo);
+Vue.component('navbar', navbar);
 Vue.component('techstack', techstack);
 
 

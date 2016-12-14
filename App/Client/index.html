@@ -15,47 +15,12 @@
 </head>
 
 <body>
-    <!-- Main Section -->
-
     <div class="app">
         <section id="main">
-            <nav class="navbar navbar-default navbar-inverse" role="navigation">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <div v-if='this.$store.state.user.username'>
-                            <logo></logo>
-                        </div>
-                        <a v-else href="#"><img id="logo" src="./Images/do-we.jpg" alt="">
-                        </a>
-
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <router-link to='/events'><a href="#">Events</a>
-                                </router-link>
-                            </li>
-                            <li class="active">
-                                <logout></logout>
-                            </li>
-                        </ul>
-                        <!-- <profilelink></profilelink> -->
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-            <!--<app ></app>-->
+            <navbar></navbar>
         </section>
-        <!-- About Section -->
         <router-view></router-view>
-
-        <!-- techStack Section -->
-
     </div>
-    <!--<app ></app>-->
     <script src="https://cdn.pubnub.com/pubnub-3.7.14.min.js"></script>
     <script src="/dist/main.js"></script>
 </body>
