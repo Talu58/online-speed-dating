@@ -6,6 +6,7 @@ import router from './Router/router.js';
 import store from './store.js';
 
 import login from './Components/loginController.js';
+import signup from './Components/signupController.js';
 import profileLink from './Components/profileLinkController.js';
 import navbar from './Components/navbarController.js';
 
@@ -16,6 +17,7 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 Vue.component('login', login);
+Vue.component('signup', signup);
 Vue.component('profilelink', profileLink);
 Vue.component('aboutus', aboutus);
 Vue.component('navbar', navbar);

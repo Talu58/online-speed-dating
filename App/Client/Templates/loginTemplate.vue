@@ -13,10 +13,3 @@
         </div>
     </div>
 </template>
-
-
-<style>
-    .forgotPassword {
-        font-size: 10px;
-    }
-</style>

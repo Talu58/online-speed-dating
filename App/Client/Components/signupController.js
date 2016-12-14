@@ -40,7 +40,7 @@ var signup = {
           });
         this.$store.commit('setUser', body);
         this.$store.commit('setSavedEvents', body.events);
-        this.$router.push('/');
+        this.$router.push('/myprofile/' + this.username);
       })
       .catch((err) => console.error(err));
     }

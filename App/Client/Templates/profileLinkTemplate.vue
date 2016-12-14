@@ -3,21 +3,17 @@
         <div v-if='this.$store.state.user.username'>
         </div>
         <div v-else>
-
-            <p class="navbar-text">Already have an account?</p>
-
-
-            <h2>Login</h2>
+            <h2>Sign-up here!</h2>
                 <div class="row">
                     <div class="col-md-12">
-                        Login via
+                        Signup via
                         <div class="social-buttons">
                             <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                             <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                         </div>
                         or
-                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                            <login></login>
+                        <form class="form" role="form" method="post" action="signup" accept-charset="UTF-8" id="login-nav">
+                            <signup></signup>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox"> keep me logged-in
