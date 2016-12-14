@@ -1,5 +1,9 @@
 <template>
     <div class="row">
+        <div class="message">
+            <img class="background" :src="background" alt="backgroundImage">
+            {{ msg}}
+        </div>
         <div id="profileColumn" class="col-md-2 col-sm-offset-1">
             <h1 id="username" >{{$route.params.id}}</h1>
             <div>

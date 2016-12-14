@@ -8,9 +8,6 @@
             <h2>Profile Options</h2>
             <ul>
                 <li>
-                    <button type="submit" class="btn btn-primary btn-block" v-on:click.prevent="logout">Logout</button>
-                </li>
-                <li>
                     <button v-on:click.prevent="goToMyProfile" type="submit" class="btn btn-primary btn-block">My Room</button>
                 </li>
                 <li>

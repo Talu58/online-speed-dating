@@ -7,6 +7,8 @@ var myProfile = {
   template: temp.template,
   data: function() {
     return {
+      msg: 'Welcome To Do-We! ' + this.$store.state.user.username,
+      background: '../Images/background.jpg',
       savedEvents: '',
       match: true
     };
@@ -28,7 +30,7 @@ var myProfile = {
     },
     editProfile () {
       this.$router.push('/myprofile/' + this.username + '/edit');
-    }, 
+    },
     setProfileInfo (res) {
       for (var key in res) {
         this[key] = res[key];
@@ -41,11 +43,11 @@ var myProfile = {
           { params: {username: this.$route.params.id}}
         )
         .then((res)=>{
-          this.setProfileInfo(res.body); 
+          this.setProfileInfo(res.body);
         });
       } else {
-        this.setProfileInfo(this.$store.getters.getProfileInfo); 
-      } 
+        this.setProfileInfo(this.$store.getters.getProfileInfo);
+      }
     },
     moment (date) {
       return moment(date);
@@ -57,7 +59,7 @@ var myProfile = {
       } else {
         this.$router.push('/myprofile/' + this.$route.params.id);
       }
-    }    
+    }
   },
 
 };

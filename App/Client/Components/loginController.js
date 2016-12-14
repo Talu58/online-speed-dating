@@ -6,15 +6,15 @@ const login = {
     return {
       username: '',
       password: ''
-    }; 
+    };
   },
   methods: {
     login: function() {
       this.$http.post('/auth/login', {
         username: this.username,
-        password: this.password 
+        password: this.password
       })
-      .then((res) => { 
+      .then((res) => {
         var body = res.body;
         this.$http.get('/api/events')
           .then((res) => {
@@ -22,8 +22,9 @@ const login = {
           });
         this.$store.commit('setUser', body);
         this.$store.commit('setSavedEvents', body.events);
+        this.$router.push('/myprofile/' + this.username);
       })
-      .catch((err) => console.error(err)); 
+      .catch((err) => console.error(err));
     }
   },
   name: 'login'
