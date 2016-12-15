@@ -27,6 +27,8 @@ var store = new Vuex.Store({
   },
   getters: {
     getProfileInfo(state, name) {
+      console.log('name', name);
+      console.log('state.user', state.user);
       return state.user;
     }
   },

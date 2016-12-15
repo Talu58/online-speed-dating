@@ -1,33 +1,19 @@
 <template>
     <div class="row">
-        <div id="updateColumn" class="container-fluid col-md-4 col-md-offset-4">
+        <div id="updateColumn" class="container-fluid col-md-6 col-md-offset-2">
             <h1 id="updateTitle">Update Profile</h1>
             <!--<img id="updateBackground"src="http://www.pngpix.com/wp-content/uploads/2016/04/Ipad-PNG-Image1.png">-->
-            <div id="ColumnInput" class="row col-md-4 col-md-offset-4">
-                <form>
-                    <div id="updateForm" class="row">
-                        <input name='name' placeholder='Enter name' type='text' v-model='$store.state.user.name' required>
+                <h3>Basic info</h3>
+                <div class="form-group col-xs-10" v-for="(info, key) in basic">
+                    <div class="col-xs-2"> {{key}} :</div>
+                    <input class="col-xs-4" placeholder="Please fill me in" type="text" v-model="info.value">
+                    <div class="col-xs-1">
+                        <button v-on:click="updateUserInfo(key, info.value)" type="submit" class="glyphicon glyphicon-pencil"></button>
                     </div>
-                    <div id="updateForm" class="row">
-                        <input name='age' placeholder='Age' type='number' v-model='$store.state.user.age' required>
-                    </div>
-                    <div id="updateForm" class="row">
-                        <input name='gender' placeholder='Gender' type='text' v-model='$store.state.user.gender' required>
-                    </div>
-                    <div id="updateForm" class="row">
-                        <input name='location' placeholder='Where Are You?' type='text' v-model='$store.state.user.location' required>
-                    </div>
-                    <div id="updateForm" class="row">
-                        <input name='profileImg' placeholder='Upload a photo' type='text' v-model='$store.state.user.profileImg' required>
-                    </div>
-                    <div id="updateForm" class="row">
-                        <input maxlength='200' name='userinfo' placeholder='Tell Us about yourself' type='text' v-model='$store.state.user.userinfo'
-                            required>
-                    </div>
-                </form>
-                <button id="updateButton" v-on:click='setUserInfo' class="glyphicon glyphicon-ok">Save</button>
-            </div>
+                </div>
+
         </div>
+    </div>
 </template>
 
 <style>
