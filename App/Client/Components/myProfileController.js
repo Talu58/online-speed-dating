@@ -19,9 +19,6 @@ var myProfile = {
       return this.$store.state.savedEvents;
     }
   },
-  // created () {
-  //   this.loadUserProfile();
-  // },
   watch: {
     '$route': 'checkRoute'
   },
@@ -32,6 +29,20 @@ var myProfile = {
     editProfile () {
       this.$router.push('/myprofile/' + this.username + '/edit');
     },
+  },
+
+};
+
+export default myProfile;
+
+
+
+
+
+// created () {
+  //   this.loadUserProfile();
+  // },
+
     // loadUserProfile () {
     //   if(!this.$store.getters.getProfileInfo) {
     //     this.$http.get('/api/user', { params: {username: this.$route.params.id}})
@@ -53,19 +64,14 @@ var myProfile = {
     //   //   this.setProfileInfo(this.$store.getters.getProfileInfo);
     //   // }
     // },
-    moment (date) {
-      return moment(date);
-    },
-    checkRoute () {
-      if (this.$route.params.id !== this.$store.state.user.username) {
-        console.error('dont do that HO!');
-        this.$router.go(-1);
-      } else {
-        this.$router.push('/myprofile/' + this.$route.params.id);
-      }
-    }
-  },
-
-};
-
-export default myProfile;
+    // moment (date) {
+    //   return moment(date);
+    // },
+    // checkRoute () {
+    //   if (this.$route.params.id !== this.$store.state.user.username) {
+    //     console.error('dont do that HO!');
+    //     this.$router.go(-1);
+    //   } else {
+    //     this.$router.push('/myprofile/' + this.$route.params.id);
+    //   }
+    // }

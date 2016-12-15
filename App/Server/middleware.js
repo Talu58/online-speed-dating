@@ -1,12 +1,6 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
-var passport = require('passport');
-var session = require('express-session');
-var LocalStrategy = require('passport-local').Strategy;
-var facebookStrategy = require('passport-facebook').Strategy;
-
-
 
 var userHandler = require('./handlers/userHandler.js');
 var User = require('../Database/models/userModel.js');
@@ -14,15 +8,12 @@ var User = require('../Database/models/userModel.js');
 var FbUser = require('../Database/models/fbUserModel.js');
 //////// new encryption schema ends here ////////
 
-var sessionOptions = {
-  secret: 'keyboard cat',
-  saveUninitialized: true,
-  resave: false
-};
+
+// SEVDA
+// TODO: need to add jwt in the middleware file
 
 module.exports = function(app, express) {
   app.use('/', express.static(path.join(__dirname, '../Client')));
-  // app.use('/dist', express.static(path.join(__dirname, '../../compiled/transpiled')));
   app.get('/dist/main.js', function(req, res) {
     console.log('called');
     res.sendFile(path.join(__dirname, '../../compiled/transpiled/main.js'));
@@ -30,7 +21,23 @@ module.exports = function(app, express) {
   app.use(morgan('dev'));
   app.use(bodyParser.json());
 
+};
+
   
+
+// SEVDA
+/**** NOTE: moved all passport stuff in comment below ****/
+
+// var passport = require('passport');
+// var session = require('express-session');
+// var LocalStrategy = require('passport-local').Strategy;
+// var facebookStrategy = require('passport-facebook').Strategy;
+
+// var sessionOptions = { 
+//   secret: 'keyboard cat',
+//   saveUninitialized: true,
+//   resave: false
+// };
   // app.use(session(sessionOptions));
   // app.use(passport.initialize());
   // app.use(passport.session());
@@ -62,5 +69,4 @@ module.exports = function(app, express) {
   //     }); 
   //   }
   // )); 
-};
 

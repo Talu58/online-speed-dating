@@ -1,12 +1,13 @@
 <template>
     <div>
         <div class="form-group col-xs-12">
-            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="username" v-model="username" required>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="username" v-model="user.username" required>
+            {{user.username}}
         </div>
         <div class="form-group col-xs-12">
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" v-model="password" required>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" v-model="user.password" required>
         </div>
-         <div class="form-group col-xs-6">
+         <!-- <div class="form-group col-xs-6">
             <input type="number" min="18" max="120" class="form-control" placeholder="Age" v-model="age" required>
         </div>
         <div class="form-group col-xs-6">
@@ -37,9 +38,9 @@
           <label>
              <input type="checkbox"> keep me logged-in
           </label>
-        </div>
+        </div> -->
         <div class="form-group col-xs-4">
-          <button type='button' class="btn btn-primary btn-block" v-on:click='signup'>Sign up</button>
+          <button type='button' class="btn btn-primary btn-block" v-on:click='signup()'>Sign up</button>
         </div>
     </div>
 </template>

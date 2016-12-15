@@ -13,9 +13,10 @@ import store from '../store.js';
 import events from '../Components/eventsController.js';
 import activeDate from '../Components/activeDateController.js';
 import myProfile from '../Components/myProfileController.js';
+import auth from '../Auth/auth.js';
 
 
-var routes = [
+let routes = [
   {
     path: '/',
     component: landingPage,
@@ -62,19 +63,21 @@ var routes = [
         path: 'active',
         component: activeDate,
       }
-  //     {
-  //       path: '/inactive',
-  //       component: inactiveController,
-  //     },
     ]
   }
 ];
 
+
+
 const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
+  // mode: 'history',
+  // base: __dirname,
   routes: routes
 });
+
+console.log('ROUTER obj', router)
+
+export default router;
 
 //we are not refreshing state to get changes on user between pages, if they are already logged in.
 //refactor later to set flags on certain routes that require updated user info
@@ -118,6 +121,3 @@ const router = new VueRouter({
 //   }
 // });
 
-console.log('ROUTER', router)
-
-export default router;

@@ -6,6 +6,7 @@ var router = require('express').Router();
 
 router.use('/api', apiRouter);
 router.use('/auth', authRouter);
+// Need to change events to /api routes as well - PROTECTED 
 router.use('/event', eventRouter);
 router.use('/error', function(req, res) {
   res.status(401).send('unauthorized');

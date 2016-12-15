@@ -1,51 +1,69 @@
 import temp from '../Templates/signupTemplate.vue';
+import auth from '../Auth/auth.js'
 
-var signup = {
+
+let signup = {
   template: temp.template,
-  data: function() {
+  name: 'signup',
+  data () {
     return {
-      username: '',
-      password: '',
-      age: '',
-      gender: '',
-      location: '',
-      interestedIn: ''
+      user: {
+        username: '',
+        password: '',
+        age: '',
+        gender: '',
+        location: '',
+        interestedIn: ''
+      }
     };
   },
 
   methods: {
-    signup: function($http) {
-      var body = {
-        username: this.username,
-        password: this.password,
-        gender: this.gender,
-        age: this.age,
-        location: this.location,
-        interestedIn: this.interestedIn,
-        admin: false
+    signup () {
+      let userData = {
+        username: this.user.username,
+        password: this.user.password
       };
-      console.log('body: ', body);
-      this.$http.post('/auth/signup', body)
-      .then((response) => {
-        // this.login();
-        var body = response.body;
-        console.log('RESP BODY ON SIGNUP', response.body)
-        this.$store.commit('setUser', body);
-        this.$store.commit('setSavedEvents', body.events);
-        this.$router.push('/myprofile/' + this.username);
-
-        this.$http.get('/api/events')
-          .then((res) => {
-            this.$store.commit('setAllEvents', res.body);
-          });
-        t
-      })
-
-      .catch((err) => {
-        alert('username already exists');
-      });
+      auth.signup(this, userData, `/myprofile/${userData.username}`);
     }
-    //need to port over login function correctly from login controller
+  },
+
+  route: {
+    canActivate() {
+      console.log('can activate on LOGIN UP route - auth.user.isAuth', auth.user.isAuth)
+      return auth.user.isAuth;
+    }
+  }
+};
+
+export default signup;
+
+
+
+
+
+
+
+
+    //   this.$http.post('/auth/signup', body)
+    //   .then((response) => {
+    //     // this.login();
+    //     var body = response.body;
+    //     console.log('RESP BODY ON SIGNUP', response.body)
+    //     this.$store.commit('setUser', body);
+    //     this.$store.commit('setSavedEvents', body.events);
+    //     this.$router.push('/myprofile/' + this.username);
+    //     this.$http.get('/api/events')
+    //       .then((res) => {
+    //         this.$store.commit('setAllEvents', res.body);
+    //       });
+    //   })
+    //   .catch((err) => {
+    //     alert('username already exists');
+    //   });
+
+
+    // need to port over login function correctly from login controller
     // login: function() {
     //   this.$http.post('/auth/login', {
     //     username: this.username,
@@ -63,7 +81,10 @@ var signup = {
     //   })
     //   .catch((err) => console.error(err));
     // }
-  }
-};
 
-export default signup;
+
+
+
+
+
+
