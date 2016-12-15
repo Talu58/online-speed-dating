@@ -45,8 +45,11 @@ exports.getUser = function (req, res) {
   });
 };
 
+
+//updted $set content;
 exports.updateUser = function (req, res) {
-  User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+  User.findOneAndUpdate({username: req.body.username}, {$set: req.body.userProp}, function() {
     res.send(204);
   });
 };
+

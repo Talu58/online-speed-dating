@@ -15,11 +15,17 @@ var userSchema = mongoose.Schema({
   gender: {type: String, default: ''},
   interestedIn: {type: String, default: ''},
   location: {type: String, required: true, default: '94105'},
+
   userinfo: {type: String, default: ''}, //rendered in vue
+  firstname: {type: String, default: ''},
+  lastname: {type: String, default: ''},
+  phone: {type: Number, default: ''},
+  email: {type: String, default: ''},
+
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
   callList: {type: Array, default: []},
-  matches: {type: Array, default: []}
+  matches: {type: Array, default: []},
 });
 
 /////// Start of FB authentication ///////
