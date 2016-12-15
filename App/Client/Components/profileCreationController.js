@@ -19,7 +19,17 @@ var profileCreation = {
         kids: this.$store.state.user.kids,
         description: this.$store.state.user.description
       },
-      interests: {}
+      interests: {
+        reading: {value: false},
+        cooking: {value: false},
+        traveling: {value: false},
+        outdoor: {value: false},
+        food: {value: false},
+        crafting: {value: false},
+        partying: {value: false},
+        animals: {value: false},
+        culture: {value: false},
+      }
     };
   },
 
@@ -40,9 +50,22 @@ var profileCreation = {
     updateUserInfo: function(userProp, updatedInfo) {
       var body = {
         username: this.$store.state.user.username,
-        userProp: updatedInfo
       };
+      body[userProp] = updatedInfo;
       this.$http.put('/api/user', body)
+      .then((response) => {
+        this.$store.commit('setUser', body);
+      })
+      .catch((err) => {
+      });
+    },
+
+    updateInterests: function(interest) {
+      this.$data.interests[interest].value = !this.$data.interests[interest].value;
+      var body = {};
+      body[interest] = this.$data.interests[interest].value;
+      console.log('body: ', body);
+      this.$http.put('/api/userInterests', body)
       .then((response) => {
         this.$store.commit('setUser', body);
       })

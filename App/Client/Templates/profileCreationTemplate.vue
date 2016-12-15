@@ -29,13 +29,19 @@
                 <br>
                 <br>
                 <textarea class="col-xs-6 col-xs-offset-2" v-model="personal.description" placeholder="Add your description"></textarea>
-                <div class="col-xs-1">
-                    <button v-on:click="updateUserInfo" type="submit" class="glyphicon glyphicon-pencil"></button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="button">
+                    <button v-on:click="updateUserInfo" type="submit" class="btn btn-primary">Save</button>
                 </div>
-               <!--  <input class="col-xs-4" placeholder="Please fill me in" type="text" v-model="info.value">
-                <div class="col-xs-1">
-                    <button v-on:click="updateUserInfo(key, info.value)" type="submit" class="glyphicon glyphicon-pencil"></button>
-                </div> -->
+            </div>
+        </div>
+        <div class="container-fluid col-xs-10 col-xs-offset-1">
+            <h3>Interests</h3>
+            <div class="form-group" v-for="(interest, key) in interests">
+                <div class="col-xs-3 col-xs-offset-1 interest" v-bind:class="{active: interest.value}" v-on:click="updateInterests(key)"><h3>{{key}}</h3></div>
             </div>
         </div>
     </div>
@@ -67,7 +73,29 @@
         float: right;
     }
 
+    .button {
+        text-align: center;
+    }
+
+    .interest {
+        height: 100px;
+        background-color: #e7e7e7;
+        color: black;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .active {
+        height: 100px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        margin-bottom: 10px;
+
+    }
+
     h3 {
         text-align: center;
     }
+
 </style>
