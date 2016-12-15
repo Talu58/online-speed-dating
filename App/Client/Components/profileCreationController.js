@@ -65,6 +65,8 @@ var profileCreation = {
       var body = this.$data.personal;
       this.$http.put('/api/userPersonal', body)
       .then((response) => {
+        console.log('response', response)
+        console.log('body again', body)
         this.$store.commit('setUser', body);
       })
       .catch((err) => {
@@ -73,11 +75,13 @@ var profileCreation = {
 
     updateInterests: function(interest) {
       this.$data.interests[interest].value = !this.$data.interests[interest].value;
-      var body = {};
+      var body = {username: this.$store.state.user.username};
       body[interest] = this.$data.interests[interest].value;
       console.log('body: ', body);
       this.$http.put('/api/userInterests', body)
       .then((response) => {
+        console.log('response', response)
+        console.log('body again', body)
         this.$store.commit('setUser', body);
       })
       .catch((err) => {

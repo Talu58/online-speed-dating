@@ -45,34 +45,19 @@ exports.getUser = function (req, res) {
   });
 };
 
+//// new code ////
 
 exports.updateUser = function (req, res) {
-  console.log('req.bdoy', req.body)
   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
     res.send(204);
   });
 };
 
-// exports.updateUser = function (req, res) {
-//   console.log('req.bdoy', req.body)
-//   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
-//     res.send(204);
-//   });
-// };
-//new code//
-
-//updted $set content;
-// exports.updateUser = function (req, res) {
-//   var userProp=req.body.userProp
-//   console.log('req looks like?', req.body)
-
-//   console.log('req.body.username', req.body.username)
-//   console.log('req.body.userProp', userProp)
-
-//   User.findOneAndUpdate({username: req.body.username}, {$set: req.body.userProp.userProp, function() {
-//     res.send(204);
-//   }
-// })
-// }
+exports.updateInterests = function (req, res) {
+  console.log('req.bdoy', req.body)
+  User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+    res.send(204);
+  });
+};
 
 
