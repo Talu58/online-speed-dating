@@ -46,12 +46,20 @@ exports.getUser = function (req, res) {
 };
 
 
-
 exports.updateUser = function (req, res) {
+  console.log('req.bdoy', req.body)
   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
     res.send(204);
   });
 };
+
+// exports.updateUser = function (req, res) {
+//   console.log('req.bdoy', req.body)
+//   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+//     res.send(204);
+//   });
+// };
+//new code//
 
 //updted $set content;
 // exports.updateUser = function (req, res) {
