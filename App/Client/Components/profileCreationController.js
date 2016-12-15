@@ -61,8 +61,13 @@ var profileCreation = {
       });
     },
 
-    updateUserPersonalInfo: function() {
+    updateUserPersonalInfo: function(personal) {
+      // var body = {username: this.$store.state.user.username};
+      // body[personal] = this.$data.personal;
       var body = this.$data.personal;
+      body['username'] = this.$store.state.user.username;
+      console.log('body', body)
+
       this.$http.put('/api/userPersonal', body)
       .then((response) => {
         console.log('response', response)

@@ -27,15 +27,19 @@ var userSchema = mongoose.Schema({
   callList: {type: Array, default: []},
   matches: {type: Array, default: []},
 
-  reading: {type: Boolean},
-  cooking: {type: Boolean},
-  traveling: {type: Boolean},
-  outdoor: {type: Boolean},
-  food: {type: Boolean},
-  crafting: {type: Boolean},
-  partying: {type: Boolean},
-  animals: {type: Boolean},
-  culture: {type: Boolean},
+  divorced: {type: String},
+  kids: {type: Number},
+  description: {type: String},
+
+  reading: {type: Boolean, default: false},
+  cooking: {type: Boolean, default: false},
+  traveling: {type: Boolean, default: false},
+  outdoor: {type: Boolean, default: false},
+  food: {type: Boolean, default: false},
+  crafting: {type: Boolean, default: false},
+  partying: {type: Boolean, default: false},
+  animals: {type: Boolean, default: false},
+  culture: {type: Boolean, default: false},
 });
 
 /////// Start of FB authentication ///////

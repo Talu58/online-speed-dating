@@ -6,6 +6,7 @@ router.post('/user', userHandler.signUpUser);
 router.get('/user', userHandler.getUser);
 router.put('/userBasic', userHandler.updateUser);
 router.put('/userInterests', userHandler.updateInterests);
+router.put('/userPersonal', userHandler.updatePersonal);
 
 router.get('/events', eventHandler.getEvents);
 router.post('/events', eventHandler.postEvent);

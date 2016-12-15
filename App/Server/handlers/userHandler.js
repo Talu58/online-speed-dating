@@ -60,4 +60,13 @@ exports.updateInterests = function (req, res) {
   });
 };
 
+exports.updatePersonal = function (req, res) {
+  console.log('req.bdoy', req.body)
+  User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+    res.send(204);
+  });
+};
+
+
+
 
