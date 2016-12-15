@@ -6,6 +6,21 @@ var profileCreation = {
   name: 'edit',
   data: function() {
     return {
+      user: this.$store.state.user,
+      basic: {
+        // firstname: this.$store.state.user.firstname,
+        // lastname: this.$store.state.user.lastname,
+        location: this.$store.state.user.location,
+        email: this.$store.state.user.email,
+        password: this.$store.state.user.password,
+        // phone: this.$store.state.user.phone
+      },
+      personnal: {
+        divorced: this.$store.state.user.divorced,
+        kids: this.$store.state.user.kids,
+        description: this.$store.state.user.description
+      },
+      interests: {}
     };
   },
 

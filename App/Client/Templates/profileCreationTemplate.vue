@@ -3,6 +3,19 @@
         <div id="updateColumn" class="container-fluid col-md-4 col-md-offset-4">
             <h1 id="updateTitle">Update Profile</h1>
             <!--<img id="updateBackground"src="http://www.pngpix.com/wp-content/uploads/2016/04/Ipad-PNG-Image1.png">-->
+
+            <ul>
+                <li v-for="{info, key} in basic">
+                    {{key}} : {{info}}
+                </li>
+
+            </ul>
+
+
+
+
+
+
             <div id="ColumnInput" class="row col-md-4 col-md-offset-4">
                 <form>
                     <div id="updateForm" class="row">

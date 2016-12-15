@@ -30,7 +30,7 @@
 					  <input type="radio" name="inlineRadioOptions2" value="Male" id="Male" v-model="interestedIn"> Male
 					</label>
 					<label class="radio-inline col-xs-offset-2">
-					  <input type="radio" name="inlineRadioOptions2" value="Both" id="Both" v-model="gender"> Both
+					  <input type="radio" name="inlineRadioOptions2" value="Both" id="Both" v-model="interestedIn"> Both
 					</label>
 				</div>
         <div class="checkbox col-xs-6">
