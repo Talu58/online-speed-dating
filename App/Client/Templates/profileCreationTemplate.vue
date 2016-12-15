@@ -7,7 +7,7 @@
                 <div class="col-xs-2 col-xs-offset-2"> {{key}} :</div>
                 <input class="col-xs-4" placeholder="Please fill me in" type="text" v-model="info.value">
                 <div class="col-xs-1">
-                    <button v-on:click="updateUserInfo(key, info.value)" type="submit" class="glyphicon glyphicon-pencil"></button>
+                    <button v-on:click="updateUserBasicInfo(key, info.value)" type="submit" class="glyphicon glyphicon-pencil"></button>
                 </div>
             </div>
         </div>
@@ -16,9 +16,9 @@
             <div class="form-group col-xs-10 col-xs-offset-2">
                 <div class="col-xs-3 col-xs-offset-2">Divorced: </div>
                 <div>
-                    <input type="radio" id="divorced" value="Yes" v-model="personal.divorced">
+                    <input type="radio" id="yes" value="Yes" v-model="personal.divorced">
                     <label for="yes">Yes</label>
-                    <input type="radio" id="divorced" value="No" v-model="personal.divorced">
+                    <input type="radio" id="no" value="No" v-model="personal.divorced">
                     <label for="no">No</label>
                 </div>
                 <br>
@@ -34,7 +34,7 @@
                 <br>
                 <br>
                 <div class="button">
-                    <button v-on:click="updateUserInfo" type="submit" class="btn btn-primary">Save</button>
+                    <button v-on:click="updateUserPersonalInfo" type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -83,6 +83,7 @@
         color: black;
         text-align: center;
         margin-bottom: 10px;
+        border-radius: 8px;
     }
 
     .active {
@@ -91,7 +92,7 @@
         color: white;
         text-align: center;
         margin-bottom: 10px;
-
+        border-radius: 8px;
     }
 
     h3 {
