@@ -10,17 +10,17 @@ var userSchema = mongoose.Schema({
   password: {type: String, required: true},
   salt: String,
   profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
-  name: {type: String, default: ''}, //rendered in vue
-  age: {type: Number, required: true, default: '21'},
-  gender: {type: String, default: ''},
-  interestedIn: {type: String, default: ''},
-  location: {type: String, required: true, default: '94105'},
+  name: {type: String}, //rendered in vue
+  age: {type: Number, required: true},
+  gender: {type: String, required: true},
+  interestedIn: {type: String},
+  location: {type: String, required: true},
 
-  userinfo: {type: String, default: ''}, //rendered in vue
-  firstname: {type: String, default: ''},
-  lastname: {type: String, default: ''},
-  phone: {type: Number, default: ''},
-  email: {type: String, default: ''},
+  userinfo: {type: String}, //rendered in vue
+  firstname: {type: String},
+  lastname: {type: String},
+  phone: {type: Number},
+  email: {type: String},
 
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
