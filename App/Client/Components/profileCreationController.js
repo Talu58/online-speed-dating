@@ -8,12 +8,11 @@ var profileCreation = {
     return {
       user: this.$store.state.user,
       basic: {
-        // firstname: this.$store.state.user.firstname,
-        // lastname: this.$store.state.user.lastname,
+        firstname: this.$store.state.user.firstname || 'Firstname',
+        lastname: this.$store.state.user.lastname || 'Lastname',
         location: this.$store.state.user.location,
-        email: this.$store.state.user.email,
-        password: this.$store.state.user.password,
-        // phone: this.$store.state.user.phone
+        email: this.$store.state.user.email || 'email',
+        phone: this.$store.state.user.phone || 'Phone'
       },
       personnal: {
         divorced: this.$store.state.user.divorced,
