@@ -1,45 +1,36 @@
 var mongoose = require('mongoose');
-/////// Start of Encryption Middleware ///////
 
+/////// Start of Encryption Middleware ///////
 // var bcrypt = require('bcrypt-nodejs');
 // var SALT_WORK_FACTOR = 10;
-
 /////// End of Encryption Middleware ///////
-
-// var userSchema = mongoose.Schema({
-//   username: {type: String, required: true, index: { unique: true } },
-//   password: String,
-//   userinfo: {type: String, default: 'User did not provide info'},
-//   name: {type: String, default: 'please fill out'},
-//   age: {type: Number, default: '0'},
-//   location: {type: String, default: 'please fill out'},
-//   profileImg: {type: String, default: 'https://www.svgimages.com/svg-image/s4/question-mark-face-256x256.png'},
-//   gender: {type: String, default: 'please fill out'},
-//   admin: {type: Boolean, default: false},
-//   events: {type: Array, default: []},
-//   callList: {type: Array, default: []},
-//   matches: {type: Array, default: []}
-// });
-
-
-/////// Start of Encryption ///////
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true } },
   password: {type: String, required: true},
-  // salt: String,
+  salt: String,
   profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
   name: {type: String, default: ''}, //rendered in vue
-  age: {type: Number, default: '21'},
+  age: {type: Number, required: true, default: '21'},
   gender: {type: String, default: ''},
   interestedIn: {type: String, default: ''},
-  location: {type: String, default: '94105'},
+  location: {type: String, required: true, default: '94105'},
   userinfo: {type: String, default: ''}, //rendered in vue
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
   callList: {type: Array, default: []},
   matches: {type: Array, default: []}
 });
+
+/////// Start of FB authentication ///////
+
+var fbUserSchema = mongoose.Schema({
+  fbID: String,
+  email: {type: String, lowercase: true},
+  name: String
+})
+
+/////// Start of Encryption ///////
 
 // userSchema.methods.checkPassword = function(candidatePassword, cb) {
 //   bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
@@ -54,9 +45,9 @@ var userSchema = mongoose.Schema({
 // userSchema.pre('save', function(next){
 //   var user = this;
 
-//   if (!user.isModified('password')) {
-//     return next();
-//   }
+  // if (!user.isModified('password')) {
+  //   return next();
+  // }
 
 //   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 //     if (err) {
@@ -68,6 +59,8 @@ var userSchema = mongoose.Schema({
 //       }
 //       user.password = hash;
 //       user.salt = salt;
+//       console.log('user.password',user.password);
+//       console.log('user.salt',user.salt);
 //       next();
 //     });
 //   });
@@ -87,3 +80,4 @@ var eventSchema = mongoose.Schema({
 
 exports.userSchema = userSchema;
 exports.eventSchema = eventSchema;
+exports.fbUserSchema = fbUserSchema;

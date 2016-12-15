@@ -10,10 +10,11 @@ router.post('/authorize', ensureLoggedIn({ redirectTo: '/error', setReturnTo: fa
   console.log('user was authorized');
   res.send(req.user);
 });
+
 router.get('/logout', function(req, res) {
   req.logout();
   res.status(200).send('logged out');
 });
 
 
-module.exports = router; 
+module.exports = router;
