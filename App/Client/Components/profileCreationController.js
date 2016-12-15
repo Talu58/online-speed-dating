@@ -20,16 +20,17 @@ var profileCreation = {
         description: this.$store.state.user.description
       },
       interests: {
-        reading: {value: false},
-        cooking: {value: false},
-        traveling: {value: false},
-        outdoor: {value: false},
-        food: {value: false},
-        crafting: {value: false},
-        partying: {value: false},
-        animals: {value: false},
-        culture: {value: false},
-      }
+        reading: {value: this.$store.state.user.reading},
+        cooking: {value: this.$store.state.user.cooking},
+        traveling: {value: this.$store.state.user.traveling},
+        outdoor: {value: this.$store.state.user.outdoor},
+        food: {value: this.$store.state.user.food},
+        crafting: {value: this.$store.state.user.crafting},
+        partying: {value: this.$store.state.user.partying},
+        animals: {value: this.$store.state.user.animals},
+        culture: {value: this.$store.state.user.culture},
+      },
+      picked: ''
     };
   },
 
@@ -47,12 +48,22 @@ var profileCreation = {
       }
     },
 
-    updateUserInfo: function(userProp, updatedInfo) {
+    updateUserBasicInfo: function(userProp, updatedInfo) {
       var body = {
         username: this.$store.state.user.username,
       };
       body[userProp] = updatedInfo;
-      this.$http.put('/api/user', body)
+      this.$http.put('/api/userBasic', body)
+      .then((response) => {
+        this.$store.commit('setUser', body);
+      })
+      .catch((err) => {
+      });
+    },
+
+    updateUserPersonalInfo: function() {
+      var body = this.$data.personal;
+      this.$http.put('/api/userPersonal', body)
       .then((response) => {
         this.$store.commit('setUser', body);
       })
