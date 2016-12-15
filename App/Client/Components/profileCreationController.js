@@ -19,7 +19,17 @@ var profileCreation = {
         kids: this.$store.state.user.kids,
         description: this.$store.state.user.description
       },
-      interests: {}
+      interests: {
+        reading: {value: false},
+        cooking: {value: false},
+        traveling: {value: false},
+        outdoor: {value: false},
+        food: {value: false},
+        crafting: {value: false},
+        partying: {value: false},
+        animals: {value: false},
+        culture: {value: false},
+      }
     };
   },
 
@@ -48,6 +58,11 @@ var profileCreation = {
       })
       .catch((err) => {
       });
+    },
+
+    updateInterests: function(interest) {
+      this.$data.interests[interest].value = !this.$data.interests[interest].value;
+      console.log('interest: ', this.$data.interests[interest].value);
     }
   },
 };
