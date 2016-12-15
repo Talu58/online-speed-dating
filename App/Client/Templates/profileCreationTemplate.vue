@@ -41,7 +41,7 @@
         <div class="container-fluid col-xs-10 col-xs-offset-1">
             <h3>Interests</h3>
             <div class="form-group" v-for="(interest, key) in interests">
-                <div class="col-xs-2 col-xs-offset-2" v-bind:class="{active: interest.value}" v-on:click="updateInterests(key)">{{key}}</div>
+                <div class="col-xs-3 col-xs-offset-1 interest" v-bind:class="{active: interest.value}" v-on:click="updateInterests(key)"><h3>{{key}}</h3></div>
             </div>
         </div>
     </div>
@@ -77,8 +77,21 @@
         text-align: center;
     }
 
+    .interest {
+        height: 100px;
+        background-color: #e7e7e7;
+        color: black;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
     .active {
-        font-size: 50px;
+        height: 100px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        margin-bottom: 10px;
+
     }
 
     h3 {
