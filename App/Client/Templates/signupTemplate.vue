@@ -39,7 +39,7 @@
           </label>
         </div>
         <div class="form-group col-xs-4">
-          <button type='button' class="btn btn-primary btn-block" v-on:click.prevent='signup'>Sign up</button>
+          <button type='button' class="btn btn-primary btn-block" v-on:click='signup'>Sign up</button>
         </div>
     </div>
 </template>

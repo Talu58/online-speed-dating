@@ -2,6 +2,7 @@
 import template from '../Templates/loginTemplate.vue';
 const login = {
   template: template.template,
+  name: 'login',
   data () {
     return {
       username: '',
@@ -16,18 +17,18 @@ const login = {
       })
       .then((res) => {
         var body = res.body;
-        this.$http.get('/api/events')
-          .then((res) => {
-            this.$store.commit('setAllEvents', res.body);
-          });
+        // this.$http.get('/api/events')
+        //   .then((res) => {
+        //     this.$store.commit('setAllEvents', res.body);
+        //   });
         this.$store.commit('setUser', body);
         this.$store.commit('setSavedEvents', body.events);
         this.$router.push('/myprofile/' + this.username);
+        console.log("this.$router", this.$router)
       })
       .catch((err) => console.error(err));
     }
   },
-  name: 'login'
 };
 
 export default login;

@@ -30,57 +30,37 @@ module.exports = function(app, express) {
   app.use(morgan('dev'));
   app.use(bodyParser.json());
 
-//////// new encryption middleware starts here ////////
-  // app.use(express.cookieParser());
-//////// new encryption middleware ends here ////////
-  app.use(session(sessionOptions));
-  app.use(passport.initialize());
-  app.use(passport.session());
+  
+  // app.use(session(sessionOptions));
+  // app.use(passport.initialize());
+  // app.use(passport.session());
 
-  passport.serializeUser(function(user, done) {
-    done(null, user._id);
-  });
+  // passport.serializeUser(function(user, done) {
+  //   done(null, user._id);
+  // });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
-  });
-
-//////// new encryption codes start here ////////
-
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-
-      userHandler.getUserDB(username, function(err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          console.log('failed username');
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-
-        // hash (password, user.salt, function(err, hash){
-        //   if (err) { return done(err);}
-        //   if (hash == user.hash) return done(null, user);
-        //   console.log('success');
-
-        //   done(null, false, {message: 'Incorrect password.'});
-        // });
-
-
-////TODO: facebook login
-
-
-//////// new encryption codes end here ////////
-
-        if (password !== user.password) {
-          console.log('failed password');
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-
-      });
-    }
-  ));
+  // passport.deserializeUser(function(id, done) {
+  //   User.findById(id, function (err, user) {
+  //     done(err, user);
+  //   });
+  // }); 
+  
+  // passport.use(new LocalStrategy(
+  //   function(username, password, done) {
+  //     userHandler.getUserDB(username, function(err, user) {
+  //       if (err) { return done(err); }
+  //       if (!user) {
+  //         console.log('failed username');
+  //         return done(null, false, { message: 'Incorrect username.' });
+  //       }
+  //       if (password !== user.password) {
+  //         console.log('failed password');
+  //         return done(null, false, { message: 'Incorrect password.' });
+  //       } 
+  //       console.log('success');
+  //       return done(null, user);
+  //     }); 
+  //   }
+  // )); 
 };
 

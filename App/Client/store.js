@@ -21,9 +21,7 @@ var store = new Vuex.Store({
     savedEvents: [],
     allEvents: [],
 
-    user: {
-      username: '',
-    }
+    user: {}
   },
   getters: {
     getProfileInfo(state, user) {

@@ -27,10 +27,10 @@ exports.signUpUser = function (req, res) {
   console.log('password before', password);
 
   exports.getUserDB(username, function(err, user) {
-    if (err) { console.error(err); }
+    if (err) { res.status(400).send('getUserDB Bad Request'); }
     if (!user) {
       exports.createUserDB({username: username, password: password}, function(err, user) {
-        res.send('user created');
+        res.json(user);
       });
     } else {
       res.status(401).send('Username already exists');
@@ -40,7 +40,7 @@ exports.signUpUser = function (req, res) {
 
 exports.getUser = function (req, res) {
   exports.getUserDB(req.query.username, function(err, user) {
-    if (err) { console.error(err); }
+    if (err) { return res.status(400).send('GET USER Bad Request')}
     res.status(200).send(user);
   });
 };
