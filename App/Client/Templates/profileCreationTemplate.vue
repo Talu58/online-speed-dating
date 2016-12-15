@@ -6,9 +6,9 @@
                 <h3>Basic info</h3>
                 <div class="form-group col-xs-10" v-for="(info, key) in basic">
                     <div class="col-xs-2"> {{key}} :</div>
-                    <input class="col-xs-4" type='text' v-model="info">
+                    <input class="col-xs-4" type='text' v-model="info.value">
                     <div class="col-xs-1">
-                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
+                        <button v-on:click='updateUserInfo' type="submit" class="glyphicon glyphicon-pencil"></button>
                     </div>
                 </div>
 
