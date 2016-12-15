@@ -29,12 +29,12 @@ var userSchema = mongoose.Schema({
   password: {type: String, required: true},
   // salt: String,
   profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
-  name: {type: String, default: ''},
+  name: {type: String, default: ''}, //rendered in vue
   age: {type: Number, default: '21'},
   gender: {type: String, default: ''},
   interestedIn: {type: String, default: ''},
   location: {type: String, default: '94105'},
-  userinfo: {type: String, default: ''},
+  userinfo: {type: String, default: ''}, //rendered in vue
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
   callList: {type: Array, default: []},
