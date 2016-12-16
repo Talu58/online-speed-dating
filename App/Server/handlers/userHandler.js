@@ -45,11 +45,12 @@ exports.signUpUser = function (req, res) {
         location: location,
         interestedIn: interestedIn
       })
+      
       newUser.save(function(err, user) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
         res.status(201).send({
-          id_token: jwt.sign(user.username, "cream on chrome!"),
+          id_token: jwt.sign(user.username,  "cream on chrome!"),
           data: user
         });
       });

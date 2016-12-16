@@ -21,7 +21,7 @@ var store = new Vuex.Store({
     savedEvents: [],
     allEvents: [],
     user: {
-      isAuth: localStorage.getItem('id_token') !== undefined
+      isAuth: (typeof localStorage.getItem('id_token')) === "string"
     }
   },
   getters: {

@@ -7,10 +7,10 @@ var events = {
   template: temp.template,
   data () {
     return {
-      username: this.username,
-      date: this.date,
+      username: this.$store.state.user.username,
+      date: '',
       result: '',
-      joined: '',
+      joined: ''
     };
   },
   created () {
