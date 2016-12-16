@@ -1,9 +1,5 @@
 var mongoose = require('mongoose');
 
-/////// Start of Encryption Middleware ///////
-// var bcrypt = require('bcrypt-nodejs');
-// var SALT_WORK_FACTOR = 10;
-/////// End of Encryption Middleware ///////
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true } },
@@ -13,7 +9,7 @@ var userSchema = mongoose.Schema({
   name: {type: String}, //rendered in vue
   age: {type: Number, required: true},
   gender: {type: String, required: true},
-  interestedIn: {type: String},
+  interestedIn: {type: String },
   location: {type: String, required: true},
 
   userinfo: {type: String}, //rendered in vue
@@ -39,7 +35,7 @@ var userSchema = mongoose.Schema({
   crafting: {type: Boolean, default: false},
   partying: {type: Boolean, default: false},
   animals: {type: Boolean, default: false},
-  culture: {type: Boolean, default: false},
+  culture: {type: Boolean, default: false}
 });
 
 /////// Start of FB authentication ///////
@@ -49,6 +45,24 @@ var fbUserSchema = mongoose.Schema({
   email: {type: String, lowercase: true},
   name: String
 })
+
+
+var eventSchema = mongoose.Schema({
+  date: {type: Date, required: true },
+  usernames: {type: Array, default: []},
+  eventType: {type: String, default: ''},
+  eventName: {type: String, required: true, index: { unique: true }, default: ''},
+  eventCallDuration: {type: Number, default: 300000}
+});
+
+
+exports.userSchema = userSchema;
+exports.eventSchema = eventSchema;
+exports.fbUserSchema = fbUserSchema;
+
+
+
+
 
 /////// Start of Encryption ///////
 
@@ -88,16 +102,3 @@ var fbUserSchema = mongoose.Schema({
 
 /////// End of Encryption ///////
 
-
-var eventSchema = mongoose.Schema({
-  date: {type: Date, required: true },
-  usernames: {type: Array, default: []},
-  eventType: {type: String, default: ''},
-  eventName: {type: String, required: true, index: { unique: true }, default: ''},
-  eventCallDuration: {type: Number, default: 300000},
-});
-
-
-exports.userSchema = userSchema;
-exports.eventSchema = eventSchema;
-exports.fbUserSchema = fbUserSchema;

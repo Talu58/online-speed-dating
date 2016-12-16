@@ -20,15 +20,11 @@ var store = new Vuex.Store({
     currentRound: null,
     savedEvents: [],
     allEvents: [],
-
-    user: {
-      username: '',
-    }
+    user: {}
   },
   getters: {
-    getProfileInfo(state, name) {
-      console.log('name', name);
-      console.log('state.user', state.user);
+    getProfileInfo(state, user) {
+      console.log('GET PROFILE INFO', state.user)
       return state.user;
     }
   },
@@ -72,6 +68,7 @@ var store = new Vuex.Store({
         state.user[key] = obj[key];
         state.isCallerFlag = obj.callList[0];
       }
+      store.getters.getProfileInfo;
     },
     setSavedEvents(state, arr ) {
       var tempSavedEvents = [];
