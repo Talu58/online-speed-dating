@@ -45,8 +45,15 @@ let routes = [
   {
     path: '/myprofile/:id',
     // meta: { requiresAuth: true },
-    component: myProfile,
-    children: [{ path: 'edit', name: 'edit', component: profileCreate}],
+    component: blank,
+    children: [{
+      path: 'edit',
+      name: 'edit',
+      component: profileCreate
+    }, {
+      path: '',
+      component: myProfile}
+    ],
     beforeEnter: (to, from, next) => {
       console.log('localstorage token id: ', localStorage['id_token']);
       if (localStorage['id_token']) {
