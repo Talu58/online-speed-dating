@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import landingPage from '../Components/landingPageController.js';
-import login from '../Components/loginController.js';
 import admin from '../Components/adminController.js';
 import video from '../Components/videoController.js';
 import signup from '../Components/signupController.js';
