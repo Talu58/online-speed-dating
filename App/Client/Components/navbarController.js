@@ -47,13 +47,6 @@ const navbar = {
         this.error = err;
       });
     },
-    vIF () {
-      if (localStorage['id_token']) {
-        return false;
-      } else {
-        return true;
-      }
-    }
   }
 };
 

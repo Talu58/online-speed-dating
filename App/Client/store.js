@@ -24,7 +24,7 @@ var store = new Vuex.Store({
   },
   getters: {
     getProfileInfo(state, user) {
-      console.log('GET PROFILE INFO', state.user)
+      console.log('GET PROFILE INFO', state.user);
       return state.user;
     }
   },

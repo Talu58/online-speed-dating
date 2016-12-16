@@ -13,13 +13,14 @@ var myProfile = {
       background: '../Images/background.jpg',
       savedEvents: '',
       match: true,
-      user: ''
+      user: this.$store.state.user
     };
   },
   computed: {
     savedEvents () {
       return this.$store.state.savedEvents;
     }
+
   },
   // watch: {
   //   '$route': 'checkRoute'
