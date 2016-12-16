@@ -8,7 +8,11 @@ var admin = {
       interests: ['reading', 'cooking', 'traveling', 'outdoor', 'food', 'crafting', 'partying', 'animals', 'culture' ],
       date: '',
       eventType: '',
-      eventName: ''
+      eventName: '',
+      eventLocation: '',
+      eventInterest: '',
+      eventGender: '',
+      eventInterestedIn: ''
     };
   },
   computed: {
@@ -59,8 +63,11 @@ var admin = {
     submit () {
       var body = {
         date: this.date,
-        eventType: this.eventType,
-        eventName: this.eventName
+        eventName: this.eventName,
+        eventLocation: this.eventLocation,
+        eventType: this.eventInterest,
+        eventGender: this.eventGender,
+        eventInterestedIn: this.eventInterestedIn
       };
       console.log(body);
       let dbUrl = '/api/events';

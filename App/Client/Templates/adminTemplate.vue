@@ -5,7 +5,9 @@
         <p id="header"> Create an event </p>
         <form>
           <label class="col-xs-4 create">Event interest:</label>
-          <input class="create" type="text" placeholder="Enter event type" v-model="eventType" >
+          <select v-model="eventInterest" class="create">
+            <option v-for='interest in interests'> {{interest}}</option>
+          </select>
           <br>
           <label class="col-xs-4 create">Event Name:</label>
           <input class="create" type="text" placeholder="Enter event name" v-model="eventName" >
@@ -13,21 +15,43 @@
           <label class="col-xs-4 create">Event Date:</label>
           <input class="create" type="datetime-local" placeholder="Enter a date" v-model="date">
           <br>
+          <label class="col-xs-4 create">Location:</label>
+          <input class="create" type="text" placeholder="Enter a location" v-model="eventLocation">
+          <br>
+          <label class="col-xs-4 create">Gender:</label>
+          <label class="radio-inline create">
+            <input type="radio" name="inlineRadioOptions1" value="Female" id="Female" v-model="eventGender"> Female
+          </label>
+          <label class="radio-inline create">
+            <input type="radio" name="inlineRadioOptions1" value="Male" id="Male" v-model="eventGender"> Male
+          </label>
+          <br>
+          <label class="col-xs-4 create">Interest in:</label>
+          <label class="radio-inline create">
+            <input type="radio" name="inlineRadioOptions2" value="Female" id="Female" v-model="eventInterestedIn"> Female
+          </label>
+          <label class="radio-inline create">
+            <input type="radio" name="inlineRadioOptions2" value="Male" id="Male" v-model="eventInterestedIn"> Male
+          </label>
+          <label class="radio-inline create">
+            <input type="radio" name="inlineRadioOptions2" value="Both" id="Both" v-model="eventInterestedIn"> Both
+          </label>
+          <br>
           <button class="col-xs-4 col-xs-offset-4 btn btn-primary create" role="button" v-on:click.prevent="submit">Create Event</button>
         </form>
       </div>
-      <div class="eventCreation">
+      <div class="eventList">
         <p id="header"> Next events </p>
-        <table class="col-xs-12 events-list">
+        <table class="col-xs-12">
           <tr>
               <th class="col-xs-4">Date</th>
               <th class="col-xs-4">Event Name</th>
               <th class="col-xs-4">Event Type</th>
           </tr>
-          <tr v-for='event in this.allEvents' class="col-xs-4 eventCreation">
-            <td> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
-            <td> {{ event.eventName}}</td>
-            <td> {{ event.eventType }} </td>
+          <tr v-for='event in this.allEvents'>
+            <td class="col-xs-4"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
+            <td class="col-xs-4"> {{ event.eventName}}</td>
+            <td class="col-xs-4"> {{ event.eventType }} </td>
           </tr>
         </table>
       </div>
@@ -70,6 +94,16 @@
     padding-bottom: 50px;
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .eventList {
+    background: #5d868a;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 500px;
   }
 
   .create {
