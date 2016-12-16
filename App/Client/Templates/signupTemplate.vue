@@ -40,7 +40,8 @@
           </label>
         </div> -->
         <div class="form-group col-xs-4">
-          <button type='button' class="btn btn-primary btn-block" v-on:click='signup()'>Sign up</button>
+          <button  v-if="!user.isAuth" class="btn btn-primary btn-block" v-on:click.prevent="signup()">Sign up</a>
+          {{user.isAuth}}
         </div>
     </div>
 </template>

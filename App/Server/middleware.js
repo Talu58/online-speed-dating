@@ -1,7 +1,6 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
-
 var userHandler = require('./handlers/userHandler.js');
 var User = require('../Database/models/userModel.js');
 //////// new encryption schema starts here ////////
@@ -13,13 +12,14 @@ var FbUser = require('../Database/models/fbUserModel.js');
 // TODO: need to add jwt in the middleware file
 
 module.exports = function(app, express) {
-  app.use('/', express.static(path.join(__dirname, '../Client')));
+  app.use(morgan('dev'));
+  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(bodyParser.json());
+  app.use(express.static(path.join(__dirname, '../Client')));
   app.get('/dist/main.js', function(req, res) {
     console.log('called');
     res.sendFile(path.join(__dirname, '../../compiled/transpiled/main.js'));
   });
-  app.use(morgan('dev'));
-  app.use(bodyParser.json());
 
 };
 

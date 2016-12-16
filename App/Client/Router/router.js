@@ -26,6 +26,10 @@ let routes = [
     component: activeDate,
   },
   {
+    path: '/login',
+    component: login,
+  },
+  {
     path: '/signup',
     component: signup
   },
@@ -37,7 +41,14 @@ let routes = [
     path: '/myprofile/:id',
     // meta: { requiresAuth: true },
     component: myProfile,
-    children: [{ path: 'edit', name: 'edit', component: profileCreate}]
+    children: [{ path: 'edit', name: 'edit', component: profileCreate}],
+    beforeEnter: (to, from, next) => {
+      if(auth.user.isAuth) {
+        next();
+      } else {
+        next('/')
+      }
+    }
   },
   {
     path: '/profile/:id',

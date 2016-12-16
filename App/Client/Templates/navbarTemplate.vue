@@ -15,7 +15,7 @@
         <li><a href="#" v-on:click.prevent="goToEvents">Events</a></li>
         <li><a href="#" v-on:click.prevent="goToMyProfile">My Profile</a></li>
         <li><a href="#" v-on:click.prevent="goToEditProfile"><span class="glyphicon glyphicon-cog"></a></li>
-        <li><a href="#" v-on:click.prevent="logout">Logout</a></li>
+        <li><a href=# v-if="user.isAuth" v-on:click.prevent="logout">Logout</a></li>
       </ul>
       <!-- <form v-else class="navbar-form nav navbar-nav navbar-right"> -->
       <form class="navbar-form nav navbar-nav navbar-right">

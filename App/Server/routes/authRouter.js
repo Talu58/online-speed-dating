@@ -1,11 +1,13 @@
-var router = require('express').Router();
+var express = require('express')
+var router = express.Router();
 var userHandler = require('../handlers/userHandler.js');
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 
-router.post('/login', userHandler.loginUser);
-router.post('/signup', userHandler.signUpUser);
-// router.get('/logout', userHandler.logoutUser);
+router.route('/login')
+.post(userHandler.loginUser);
 
+router.route('/signup')
+.post(userHandler.signUpUser);
 
 module.exports = router; 
 

@@ -21,19 +21,20 @@ let login = {
   methods: {
     login () {
       let userData = {
-        username: this.username,
-        password: this.password
+        username: this.user.username,
+        password: this.user.password
       };
       auth.login(this, userData, `/myprofile/${userData.username}`);
     }
-  },
-
-  route: {
-    canActivate() {
-      console.log('can activate on SIGN UP route - auth.user.isAuth', auth.user.isAuth)
-      return auth.user.isAuth;
-    }
   }
+
+  // watch: {
+  //   '$route' (to, from) {
+  //     // react to route changes...
+  //   }
+  // }
+
+  
 };
 
 export default login;

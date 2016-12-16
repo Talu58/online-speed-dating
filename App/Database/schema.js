@@ -21,7 +21,6 @@ var userSchema = mongoose.Schema({
   lastname: {type: String},
   phone: {type: Number},
   email: {type: String},
-
   admin: {type: Boolean, default: false},
   events: {type: Array, default: []},
   callList: {type: Array, default: []},

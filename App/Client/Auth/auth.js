@@ -14,12 +14,13 @@ var auth = {
   login(context, credentials, redirect) {
     context.$http.post(LOGIN_URL, credentials)
     .then((data) => {
-      console.log('DATA ON LOGIN?', login);
+      console.log('DATA ON LOGIN?', data);
       localStorage.setItem('id_token', data.body.id_token);
+      console.log('this', this)
       this.user.isAuth = true;
       if(redirect) {
         console.log('redirect!', redirect)
-        this.$router.push(redirect);      
+        context.$router.push(redirect);      
       }
     })
     .catch((err) => {
@@ -28,15 +29,16 @@ var auth = {
   },
 
   signup(context, credentials, redirect) {
+    console.log("CRED",credentials)
     context.$http.post(SIGNUP_URL, credentials)
     .then((data) => {
       console.log('DATA ON SIGNUP?', data)
       localStorage.setItem('id_token', data.body.id_token);
+      console.log('data.body.id_token', data.body.id_token)
       this.user.isAuth = true;
       if(redirect) {
-        this.$router.push(redirect);        
+        context.$router.push(redirect);        
       }
-      context.checkAuth();
     })
     .catch((err) => {
       context.error = err
@@ -51,22 +53,15 @@ var auth = {
   },
   
   checkAuth() {
-    console.log('checkAuth', this.user, localStorage.getItem('id_token'))
-    var jwt = localStorage.getItem('id_token')
+    var jwt = localStorage.getItem('id_token');
     if(jwt) {
       this.user.isAuth = true;
     }
     else {
       this.user.isAuth = false;      
     }
+    console.log('checkAuth', this.user.isAuth, localStorage.getItem('id_token'));
   },
-
-  // The object to be passed as a header for isAuth requests
-  getAndSetAuthHeader() {
-    return {
-      'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-    }
-  }
 }
 
 export default auth;

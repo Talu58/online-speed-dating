@@ -7,6 +7,7 @@ const navbar = {
   template: temp.template,
   data () {
     return {
+      user: auth.user,
       username: '',
       password: ''
     };

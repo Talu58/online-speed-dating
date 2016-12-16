@@ -20,7 +20,6 @@ var store = new Vuex.Store({
     currentRound: null,
     savedEvents: [],
     allEvents: [],
-
     user: {}
   },
   getters: {

@@ -7,7 +7,7 @@ var _ = require('underscore');
 var key = require('../config.js')
 
 // HELPER DB FUNCTIONS
-exports.getUserDB = function (username, cb) {
+exports.getUserDB = function (username) {
   User.findOne({username: username})
    .exec(function(err, user) {
      if (err) { cb(err, null); }
@@ -28,15 +28,14 @@ exports.createUserDB = function(user, cb) {
 exports.signUpUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
-
-  exports.getUserDB(username, function(err, user) {
+  User.findOne({username: username}).exec(function(err, user) {
     if (err) { return res.status(400).send('getUserDB Bad Request'); }
     if (!user) {
       exports.createUserDB({username: username, password: password}, function(err, user) {
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user)
-        console.log('Omit returns...', _.omit(user, 'password'))
+        // console.log('Omit returns...', _.omit(user, 'password'))
         res.status(201).send({
-          id_token: jwt.sign(_.omit(user, 'password'), key.secret)
+          id_token: jwt.sign(user, "cream on chrome!")
         });
       });
     } else {
@@ -49,15 +48,17 @@ exports.signUpUser = function (req, res) {
 // if(password === user.password) {
 //   console.log('MATCH', user)
 exports.loginUser = function(req, res) {
-  console.log('LOGIN SUCCESFUL - USER DATA', req.body)
+  console.log('LOGIN - USER DATA', req.body, req.url)
+  console.log('req.path',  req.path)
   var username = req.body.username;
   var password = req.body.password; 
 
-  exports.getUserDb(username, function(err, user) {
+  User.findOne({username: username}).exec(function(err, user) {
+    console.log("user", username)
     if(err) { return res.status(400).send('getUserDB Bad Request'); }
     if(!user) { return res.sendStatus(401); }
     res.status(201).send({
-      id_token: jwt.sign(_.omit(user, 'password'), key.secret)
+      id_token: jwt.sign(user, "cream on chrome!")
     });
   })
 

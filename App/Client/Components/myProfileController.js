@@ -1,6 +1,8 @@
 import temp from '../Templates/myProfileTemplate.vue';
 import { mapState } from 'vuex';
 import moment from 'moment';
+import auth from '../Auth/auth.js';
+
 
 var myProfile = {
   name: 'myProfile',
@@ -11,7 +13,7 @@ var myProfile = {
       background: '../Images/background.jpg',
       savedEvents: '',
       match: true,
-      user: this.$store.getters.getProfileInfo,
+      user: ''
     };
   },
   computed: {
@@ -19,9 +21,10 @@ var myProfile = {
       return this.$store.state.savedEvents;
     }
   },
-  watch: {
-    '$route': 'checkRoute'
-  },
+  // watch: {
+  //   '$route': 'checkRoute'
+  // },
+
   methods: {
     toDate (event) {
       this.$router.push('/date/' + event._id + '/active');
@@ -30,6 +33,13 @@ var myProfile = {
       this.$router.push('/myprofile/' + this.username + '/edit');
     },
   },
+
+  // route: {
+  //   canActivate() {
+  //     console.log('can activate on `LOGIN` route - auth.user.isAuth', auth.user.isAuth)
+  //     return auth.user.isAuth;
+  //   }
+  // }
 
 };
 

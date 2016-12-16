@@ -1,18 +1,34 @@
-var router = require('express').Router();
-var jwt = require('express-jwt');
+var express = require('express')
+var router = express.Router();
 var userHandler = require('../handlers/userHandler.js');
 var eventHandler = require('../handlers/eventHandler.js');
 
 let key = require('../config.js')
-let jwtAuth = jwt({secret: key.secret});
 
-router.get('/user', jwtAuth, userHandler.getUser);
-router.put('/user',jwtAuth, userHandler.updateUser);
-router.get('/user/events', jwtAuth, eventHandler.getSingleEvent);
 
-router.get('/events', jwtAuth, eventHandler.getEvents);
-router.post('/events', jwtAuth, eventHandler.postEvent);
-router.put('/events',jwtAuth, eventHandler.updateEvent);
+// router.use(jwtAuth);
 
-module.exports = router;
+router.route('/user')
+.get(userHandler.getUser)
+.put(userHandler.updateUser);
+
+router.route('/user/events')
+.get(eventHandler.getSingleEvent);
+
+router.route('/events')
+.get(eventHandler.getEvents)
+.post(eventHandler.postEvent)
+.put(eventHandler.updateEvent);
+
+console.log('router', router);2
+
+module.exports = router; 
+
+
+
+
+
+
+
+// var passport = require('passport');
 

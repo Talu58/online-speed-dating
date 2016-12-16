@@ -26,13 +26,6 @@ let signup = {
       };
       auth.signup(this, userData, `/myprofile/${userData.username}`);
     }
-  },
-
-  route: {
-    canActivate() {
-      console.log('can activate on LOGIN UP route - auth.user.isAuth', auth.user.isAuth)
-      return auth.user.isAuth;
-    }
   }
 };
 
