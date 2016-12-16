@@ -4,7 +4,6 @@ var User = require('../../Database/models/userModel.js');
 
 var jwt = require('jsonwebtoken');
 var _ = require('underscore');
-var key = require('../config.js')
 
 // HELPER DB FUNCTIONS
 exports.getUserDB = function (username) {
@@ -17,7 +16,7 @@ exports.getUserDB = function (username) {
 
 exports.createUserDB = function(user, cb) {
   User.create(user, function (err, user) {
-    if (err) { return cb(err); }
+    if (err) { return cb(err, user); }
     console.log('password after', user.password, user.salt)
 
     cb(null, user);
@@ -28,12 +27,18 @@ exports.createUserDB = function(user, cb) {
 exports.signUpUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
+  console.log('REQ.BODY', req.body)
   User.findOne({username: username}).exec(function(err, user) {
-    if (err) { return res.status(400).send('getUserDB Bad Request'); }
+    console.log('user', user)
+    if (err) { return res.status(400).send('getUserDB ERR'); }
     if (!user) {
-      exports.createUserDB({username: username, password: password}, function(err, user) {
-        console.log("SIGNUP SUCCESFUL - USER DATA: ", user)
-        // console.log('Omit returns...', _.omit(user, 'password'))
+      var newUser =  new User ({
+        username: username, 
+        password: password
+      })
+      newUser.save(function(err, user) {
+        if (err) { return res.status(400).send('getUserDB Bad Request');}
+        console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
         res.status(201).send({
           id_token: jwt.sign(user, "cream on chrome!")
         });

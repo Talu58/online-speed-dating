@@ -7,38 +7,17 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true } },
-  password: {type: String, required: true},
-  salt: String,
-  profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
-  name: {type: String}, //rendered in vue
-  age: {type: Number, required: true},
-  gender: {type: String, required: true},
-  interestedIn: {type: String},
-  location: {type: String, required: true},
-
-  userinfo: {type: String}, //rendered in vue
-  firstname: {type: String},
-  lastname: {type: String},
-  phone: {type: Number},
-  email: {type: String},
+  password: String,
+  userinfo: {type: String },
+  name: {type: String },
+  age: {type: Number },
+  location: {type: String},
+  profileImg: {type: String, default: 'https://www.svgimages.com/svg-image/s4/question-mark-face-256x256.png'},
+  gender: {type: String},
   admin: {type: Boolean, default: false},
-  events: {type: Array, default: []},
-  callList: {type: Array, default: []},
-  matches: {type: Array, default: []},
-
-  divorced: {type: String},
-  kids: {type: Number},
-  description: {type: String},
-
-  reading: {type: Boolean, default: false},
-  cooking: {type: Boolean, default: false},
-  traveling: {type: Boolean, default: false},
-  outdoor: {type: Boolean, default: false},
-  food: {type: Boolean, default: false},
-  crafting: {type: Boolean, default: false},
-  partying: {type: Boolean, default: false},
-  animals: {type: Boolean, default: false},
-  culture: {type: Boolean, default: false},
+  events: {type: Array },
+  callList: {type: Array },
+  matches: {type: Array }
 });
 
 /////// Start of FB authentication ///////
@@ -93,7 +72,7 @@ var eventSchema = mongoose.Schema({
   usernames: {type: Array, default: []},
   eventType: {type: String, default: ''},
   eventName: {type: String, required: true, index: { unique: true }, default: ''},
-  eventCallDuration: {type: Number, default: 300000},
+  eventCallDuration: {type: Number, default: 300000}
 });
 
 

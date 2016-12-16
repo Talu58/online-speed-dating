@@ -17,18 +17,19 @@ let jwtAuth = jwt({
 
 require('./middleware.js')(app, express);
 app.use('/auth', authRouter);
+
 app.use('/api', jwtAuth);
 app.use('/api', apiRouter);
 
-// app.get('/apix/users', function(req, res) {
-//   User.find({}, function(err, users) {
-//     var allUsers = {};
-//     users.forEach(function(user) {
-//       allUsers[user._id] = user;
-//     });
-//     res.json(allUsers);
-//   });
-// });
+app.get('/apix/users', function(req, res) {
+  User.find({}, function(err, users) {
+    var allUsers = {};
+    users.forEach(function(user) {
+      allUsers[user._id] = user;
+    });
+    res.json(allUsers);
+  });
+});
 
 
 app.listen(PORT, function() {

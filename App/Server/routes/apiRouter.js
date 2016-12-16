@@ -3,10 +3,6 @@ var router = express.Router();
 var userHandler = require('../handlers/userHandler.js');
 var eventHandler = require('../handlers/eventHandler.js');
 
-let key = require('../config.js')
-
-
-// router.use(jwtAuth);
 
 router.route('/user')
 .get(userHandler.getUser)
@@ -20,7 +16,6 @@ router.route('/events')
 .post(eventHandler.postEvent)
 .put(eventHandler.updateEvent);
 
-console.log('router', router);2
 
 module.exports = router; 
 
