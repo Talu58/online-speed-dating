@@ -17,7 +17,7 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 // UNCOMMENT LINE BELOW ONCE WE CAN RENDER THE NAVBAR FOR AUTH USER
-Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
+Vue.http.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token');
 auth.checkAuth();
 
 // Vue.component('login', login);

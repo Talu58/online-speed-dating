@@ -1,8 +1,16 @@
 var express = require('express')
-var router = express.Router();
 var userHandler = require('../handlers/userHandler.js');
 var eventHandler = require('../handlers/eventHandler.js');
+var config  = require('../config');
+var jwt = require('express-jwt');
 
+var jwtAuth = jwt({
+	secret: config.secret
+});
+
+var router = express.Router();
+
+router.use(jwtAuth)
 
 router.route('/user')
 .get(userHandler.getUser)
