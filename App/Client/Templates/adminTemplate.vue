@@ -48,7 +48,7 @@
               <th class="col-xs-4">Event Name</th>
               <th class="col-xs-4">Event Type</th>
           </tr>
-          <tr v-for='event in this.allEvents'>
+          <tr v-for='event in this.allEvents' v-on:click.prevent="updateCurrentEvent(event.eventName)">
             <td class="col-xs-4"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
             <td class="col-xs-4"> {{ event.eventName}}</td>
             <td class="col-xs-4"> {{ event.eventType }} </td>
@@ -57,13 +57,12 @@
       </div>
     </div>
     <div class="col-xs-6">
-      <div class="eventCreation" v-for='event in this.allEvents'>
-        <div class="col-xs-2" >{{event.eventName}}</div>
-        <div class='col-xs-2' >{{moment(event.date).format('MMMM Do YYYY, h:mm:ss a')}}</div>
-        <div class='col-xs-2' > <button v-on:click.prevent="setupEvent(event)" type="submit" class="btn btn-primary btn-block">Setup Event</button></div>
-        <div class='col-xs-2' > <button v-on:click.prevent="startEvent(event)" type="submit" class="btn btn-primary btn-block">Start Event</button></div>
-        <div class='col-xs-2' ><button v-on:click.prevent="incrementRound(event)" type="submit" class="btn btn-primary btn-block">Increment Round</button></div>
-        <div class='col-xs-2' ><button v-on:click.prevent="endEvent(event)" type="submit" class="btn btn-primary btn-block">End Event</button></div>
+      <div class="eventCreation" v-if="currentEvent">
+        <div class="col-xs-2" >{{currentEvent.eventName}}</div>
+        <div class='col-xs-2' > <button v-on:click.prevent="setupEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Setup Event</button></div>
+        <div class='col-xs-2' > <button v-on:click.prevent="startEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Start Event</button></div>
+        <div class='col-xs-2' ><button v-on:click.prevent="incrementRound(currentEvent)" type="submit" class="btn btn-primary btn-block">Increment Round</button></div>
+        <div class='col-xs-2' ><button v-on:click.prevent="endEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">End Event</button></div>
       </div>
     </div>
   </div>

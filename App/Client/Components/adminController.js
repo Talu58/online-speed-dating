@@ -12,7 +12,8 @@ var admin = {
       eventLocation: '',
       eventInterest: '',
       eventGender: '',
-      eventInterestedIn: ''
+      eventInterestedIn: '',
+      currentEvent: ''
     };
   },
   computed: {
@@ -84,7 +85,15 @@ var admin = {
       .catch((err) => {
         console.error('Something went wrong with POST: ', err);
       });
+    },
+    updateCurrentEvent (eventName) {
+      for (var event in this.$store.state.allEvents) {
+        if (eventName === this.$store.state.allEvents[event].eventName) {
+          this.currentEvent = this.$store.state.allEvents[event];
+        }
+      }
     }
+
   },
 };
 
