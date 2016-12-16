@@ -5,12 +5,12 @@ var admin = {
   template: temp.template,
   data: function () {
     return {
-      username: '',
-      date: '', 
+      interests: ['reading', 'cooking', 'traveling', 'outdoor', 'food', 'crafting', 'partying', 'animals', 'culture' ],
+      date: '',
       eventType: '',
       eventName: ''
     };
-  }, 
+  },
   computed: {
     allEvents () {
       return this.$store.state.allEvents;
@@ -31,21 +31,21 @@ var admin = {
       this.$http.post('/event/setup', {
         _id: event._id
       })
-      .then((res) => { 
+      .then((res) => {
         var body = res.body;
         this.$store.commit('setUser', body);
       })
-      .catch((err) => console.error(err)); 
+      .catch((err) => console.error(err));
     },
 
-    endEvent(event) { 
+    endEvent(event) {
       this.$store.state.pubnub.publish({
         message: 'End',
         channel: [event._id]
       });
     },
 
-    incrementRound(event) { 
+    incrementRound(event) {
       this.$store.state.pubnub.publish({
         message: this[event._id],
         channel: [event._id]
@@ -57,9 +57,7 @@ var admin = {
       return moment(date);
     },
     submit () {
-
       var body = {
-        username: this.username,
         date: this.date,
         eventType: this.eventType,
         eventName: this.eventName
@@ -71,16 +69,15 @@ var admin = {
         console.log(res.body);
         this.$store.commit( 'setNewEvent', res.body);
         //clear form fields
-        this.username = '',
         this.date = '',
-        this.eventType = '', 
+        this.eventType = '',
         this.eventName = '';
 
       })
       .catch((err) => {
         console.error('Something went wrong with POST: ', err);
       });
-    } 
+    }
   },
 };
 

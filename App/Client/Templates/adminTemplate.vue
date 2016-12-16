@@ -6,6 +6,10 @@
         <form>
           <label class="col-xs-4 create">Event interest:</label>
           <input class="create" type="text" placeholder="Enter event type" v-model="eventType" >
+          <select v-model="selected">
+            <option v-for="interest in insterests">{insterest}</option>
+          </select>
+          <span>Selected: {{ selected }}</span>
           <br>
           <label class="col-xs-4 create">Event Name:</label>
           <input class="create" type="text" placeholder="Enter event name" v-model="eventName" >

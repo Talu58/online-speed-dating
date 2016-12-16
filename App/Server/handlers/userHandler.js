@@ -38,7 +38,7 @@ exports.signUpUser = function (req, res) {
     if (err) { return res.status(400).send('getUserDB ERR'); }
     if (!user) {
       var newUser =  new User ({
-        username: username, 
+        username: username,
         password: password,
         age: age,
         gender: gender,
@@ -65,7 +65,7 @@ exports.loginUser = function(req, res) {
   console.log('LOGIN - USER DATA', req.body, req.url)
   console.log('req.path',  req.path)
   var username = req.body.username;
-  var password = req.body.password; 
+  var password = req.body.password;
 
   User.findOne({username: username}).exec(function(err, user) {
     console.log("user", username)
@@ -87,7 +87,7 @@ exports.logoutUser = function(req, res) {
 
 exports.updateUser = function (req, res) {
   User.findOneAndUpdate(
-    {username: req.body.username}, 
+    {username: req.body.username},
     {$set: req.body}, function() {
     res.send(204);
   });
