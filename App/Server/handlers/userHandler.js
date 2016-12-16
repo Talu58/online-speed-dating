@@ -49,7 +49,8 @@ exports.signUpUser = function (req, res) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
         res.status(201).send({
-          id_token: jwt.sign(user, "cream on chrome!")
+          id_token: jwt.sign(user.username, "cream on chrome!"),
+          data: user
         });
       });
     } else {
@@ -68,11 +69,12 @@ exports.loginUser = function(req, res) {
   var password = req.body.password;
 
   User.findOne({username: username}).exec(function(err, user) {
-    console.log("user", username)
-    if(err) { return res.status(400).send('getUserDB Bad Request'); }
-    if(!user) { return res.sendStatus(401); }
+    console.log("user", user)
+    if (err) { return res.status(400).send('getUserDB Bad Request'); }
+    if (!user) { return res.sendStatus(401); }
     res.status(201).send({
-      id_token: jwt.sign(user, "cream on chrome!")
+      id_token: jwt.sign(user.username, "cream on chrome!"),
+      data: user
     });
   })
 

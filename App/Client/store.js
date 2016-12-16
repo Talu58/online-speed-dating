@@ -68,7 +68,7 @@ var store = new Vuex.Store({
         state.user[key] = obj[key];
         state.isCallerFlag = obj.callList[0];
       }
-      store.getters.getProfileInfo;
+      // store.getters.getProfileInfo;
     },
     setSavedEvents(state, arr ) {
       var tempSavedEvents = [];

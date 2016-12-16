@@ -24,18 +24,24 @@ let routes = [
   {
     path: '/video',
     component: activeDate,
-  },
-  {
-    path: '/login',
-    component: login,
-  },
-  {
-    path: '/signup',
-    component: signup
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/Admin',
     component: admin,
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/myprofile/:id',
@@ -43,10 +49,11 @@ let routes = [
     component: myProfile,
     children: [{ path: 'edit', name: 'edit', component: profileCreate}],
     beforeEnter: (to, from, next) => {
-      if(auth.user.isAuth) {
+      console.log('localstorage token id: ', localStorage['id_token']);
+      if (localStorage['id_token']) {
         next();
       } else {
-        next('/')
+        next('/');
       }
     }
   },
@@ -54,6 +61,13 @@ let routes = [
     path: '/profile/:id',
     // meta: { requiresAuth: true },
     component: profile,
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/events',
@@ -63,7 +77,14 @@ let routes = [
         path: '',
         component: events,
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/date/:dateid',
@@ -74,7 +95,14 @@ let routes = [
         path: 'active',
         component: activeDate,
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   }
 ];
 

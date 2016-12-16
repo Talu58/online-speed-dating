@@ -10,12 +10,13 @@
       </div>
     </div>
 
-      <!-- <ul v-if='this.$store.state.user.username' class="nav navbar-nav navbar-right"> -->
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" v-on:click.prevent="goToEvents">Events</a></li>
-        <li><a href="#" v-on:click.prevent="goToMyProfile">My Profile</a></li>
-        <li><a href="#" v-on:click.prevent="goToEditProfile"><span class="glyphicon glyphicon-cog"></a></li>
-        <li><a href=# v-if="user.isAuth" v-on:click.prevent="logout">Logout</a></li>
+    <!--   <ul v-if='this.$store.state.user.username' class="nav navbar-nav navbar-right"> -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" v-on:click.prevent="goToEvents">Events</a></li>
+          <li><a href="#" v-on:click.prevent="goToMyProfile">My Profile</a></li>
+          <li><a href="#" v-on:click.prevent="goToEditProfile"><span class="glyphicon glyphicon-cog"></span></a></li>
+          <li><a href=# v-on:click.prevent="logout">Logout</a></li>
+        </ul>
       </ul>
       <!-- <form v-else class="navbar-form nav navbar-nav navbar-right"> -->
       <form class="navbar-form nav navbar-nav navbar-right">
