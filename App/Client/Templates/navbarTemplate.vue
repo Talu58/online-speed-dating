@@ -2,15 +2,14 @@
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div  v-if="user.isAuth">
+      <div v-if="checkAuth()">
           <a href="#" v-on:click.prevent="goToMyProfile"><img id="logo" src="http://previews.123rf.com/images/iqoncept/iqoncept1204/iqoncept120400078/13406052-Les-mots-We-Can-Do-It-en-lettres-rouges-pour-symboliser-la-confiance-3d-et-une-attitude-positive-n-c-Banque-d'images.jpg" alt=""></a>
       </div>
       <div v-else>
           <a href="#"><img id="logo" src="http://previews.123rf.com/images/iqoncept/iqoncept1204/iqoncept120400078/13406052-Les-mots-We-Can-Do-It-en-lettres-rouges-pour-symboliser-la-confiance-3d-et-une-attitude-positive-n-c-Banque-d'images.jpg" alt=""></a>
       </div>
     </div>
-
-      <ul v-if="user.isAuth" class="nav navbar-nav navbar-right">
+      <ul v-if="checkAuth()" class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" v-on:click.prevent="goToEvents">Events</a></li>
           <li><a href="#" v-on:click.prevent="goToMyProfile">My Profile</a></li>

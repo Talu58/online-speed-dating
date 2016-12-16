@@ -20,7 +20,9 @@ var store = new Vuex.Store({
     currentRound: null,
     savedEvents: [],
     allEvents: [],
-    user: {}
+    user: {
+      isAuth: (typeof localStorage.getItem('id_token')) === "string"
+    }
   },
   getters: {
     getProfileInfo(state, user) {
@@ -29,6 +31,12 @@ var store = new Vuex.Store({
     }
   },
   mutations: {
+    logout (state) {
+      state.user = {
+        isAuth: false
+      };
+    },
+
     clearState(state) {
       console.log('this is before ', state);
       var initialState = {
@@ -45,7 +53,7 @@ var store = new Vuex.Store({
         allEvents: [],
 
         user: {
-          username: '',
+          username: ''
         }
       };
 

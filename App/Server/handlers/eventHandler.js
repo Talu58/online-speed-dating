@@ -5,6 +5,7 @@ var db = require('../../Database/config.js');
 //Request handlers
 exports.getEvents = (req, res) => {
   Event.find({}).exec((err, results) => {
+    console.log('results', results)
     if (err) { 
       throw err;
     }

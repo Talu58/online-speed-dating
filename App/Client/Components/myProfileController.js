@@ -13,7 +13,8 @@ var myProfile = {
       background: '../Images/background.jpg',
       savedEvents: '',
       match: true,
-      user: this.$store.state.user
+      user: this.$store.state.user,
+      moment: moment
     };
   },
   computed: {
