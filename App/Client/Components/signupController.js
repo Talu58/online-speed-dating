@@ -31,8 +31,9 @@ let signup = {
       auth.signup(this, userData)
       .then((response) => {
         localStorage.setItem('id_token', response.body.id_token);
+        this.user = response.body.data;
         this.user.isAuth = true;
-        this.$store.commit('setUser', response.data.data);
+        this.$store.commit('setUser', this.user);
         this.$router.push(`/myprofile/${userData.username}`);
       })
       .catch((err) => {

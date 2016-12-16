@@ -20,11 +20,10 @@ var auth = {
   },
 
   // To log out, we just need to remove the token
-  logout() {
-    console.log("this.user", this.user)
-    localStorage.removeItem('id_token');
-    this.user.isAuth = false;
-  },
+  // logout() {
+  //   localStorage.removeItem('id_token');
+  //   this.user.isAuth = false;
+  // },
 
   checkAuth() {
     var jwt = localStorage.getItem('id_token');

@@ -1,7 +1,6 @@
 <template>
     <div class="row">
         <div class="message">
-            <h2>{{user}}</h2>
             <img class="background" :src="background" alt="backgroundImage">
             {{ msg}}
         </div>

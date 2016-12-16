@@ -18,6 +18,7 @@ const navbar = {
 
   methods: {
     checkAuth () {
+      console.log("checkAuth", this.$store.state.user.isAuth)
       return this.$store.state.user.isAuth;
     },
     goToMyProfile: function() {
@@ -30,7 +31,6 @@ const navbar = {
       this.$router.push('/events');
     },
     logout: function() {
-      // auth.logout();
       localStorage.removeItem('id_token');
       this.user.isAuth = false;
       this.$router.push('/');
