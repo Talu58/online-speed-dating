@@ -7,7 +7,7 @@ const navbar = {
   template: temp.template,
   data () {
     return {
-      user: auth.user,
+      user: {}
     };
   },
   computed: {
@@ -17,6 +17,9 @@ const navbar = {
   },
 
   methods: {
+    checkAuth () {
+      return this.$store.state.user.isAuth;
+    },
     goToMyProfile: function() {
       this.$router.push('/myprofile/' + this.user.username);
     },
@@ -27,20 +30,24 @@ const navbar = {
       this.$router.push('/events');
     },
     logout: function() {
-      auth.logout();
+      // auth.logout();
+      localStorage.removeItem('id_token');
+      this.user.isAuth = false;
       this.$router.push('/');
-      this.$store.commit('clearState');
+      this.$store.commit('logout');
     },
     login () {
-      let userData = {
+      var userData = {
         username: this.user.username,
         password: this.user.password
       };
       auth.login(this, userData)
       .then((response) => {
+        console.log(response)
         localStorage.setItem('id_token', response.body.id_token);
+        this.user = response.data.data;
         this.user.isAuth = true;
-        this.$store.commit('setUser', response.data.data);
+        this.$store.commit('setUser', this.user);
         this.$router.push(`/myprofile/${userData.username}`);
       })
       .catch((err) => {
