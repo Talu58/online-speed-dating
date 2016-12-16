@@ -38,7 +38,7 @@ exports.signUpUser = function (req, res) {
     if (err) { return res.status(400).send('getUserDB ERR'); }
     if (!user) {
       var newUser =  new User ({
-        username: username, 
+        username: username,
         password: password,
         age: age,
         gender: gender,
@@ -49,7 +49,8 @@ exports.signUpUser = function (req, res) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
         res.status(201).send({
-          id_token: jwt.sign(user, "cream on chrome!")
+          id_token: jwt.sign(user.username, "cream on chrome!"),
+          data: user
         });
       });
     } else {
@@ -65,14 +66,15 @@ exports.loginUser = function(req, res) {
   console.log('LOGIN - USER DATA', req.body, req.url)
   console.log('req.path',  req.path)
   var username = req.body.username;
-  var password = req.body.password; 
+  var password = req.body.password;
 
   User.findOne({username: username}).exec(function(err, user) {
-    console.log("user", username)
-    if(err) { return res.status(400).send('getUserDB Bad Request'); }
-    if(!user) { return res.sendStatus(401); }
+    console.log("user", user)
+    if (err) { return res.status(400).send('getUserDB Bad Request'); }
+    if (!user) { return res.sendStatus(401); }
     res.status(201).send({
-      id_token: jwt.sign(user, "cream on chrome!")
+      id_token: jwt.sign(user.username, "cream on chrome!"),
+      data: user
     });
   })
 
@@ -87,7 +89,7 @@ exports.logoutUser = function(req, res) {
 
 exports.updateUser = function (req, res) {
   User.findOneAndUpdate(
-    {username: req.body.username}, 
+    {username: req.body.username},
     {$set: req.body}, function() {
     res.send(204);
   });

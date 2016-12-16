@@ -28,7 +28,16 @@ let signup = {
         location: this.user.location,
         interestedIn: this.user.interestedIn
       };
-      auth.signup(this, userData, `/myprofile/${userData.username}`);
+      auth.signup(this, userData)
+      .then((response) => {
+        localStorage.setItem('id_token', response.body.id_token);
+        this.user.isAuth = true;
+        this.$store.commit('setUser', response.data.data);
+        this.$router.push(`/myprofile/${userData.username}`);
+      })
+      .catch((err) => {
+        this.error = err;
+      });
     }
   }
 };

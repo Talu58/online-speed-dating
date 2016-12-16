@@ -12,37 +12,11 @@ var auth = {
   },
   // Send a request to the login URL and save the returned JWT
   login(context, credentials, redirect) {
-    context.$http.post(LOGIN_URL, credentials)
-    .then((data) => {
-      console.log('DATA ON LOGIN?', data);
-      localStorage.setItem('id_token', data.body.id_token);
-      console.log('this', this)
-      this.user.isAuth = true;
-      if(redirect) {
-        console.log('redirect!', redirect)
-        context.$router.push(redirect);      
-      }
-    })
-    .catch((err) => {
-      context.error = err;
-    })
+    return context.$http.post(LOGIN_URL, credentials);
   },
 
   signup(context, credentials, redirect) {
-    console.log("CRED",credentials)
-    context.$http.post(SIGNUP_URL, credentials)
-    .then((data) => {
-      console.log('DATA ON SIGNUP?', data)
-      localStorage.setItem('id_token', data.body.id_token);
-      console.log('data.body.id_token', data.body.id_token)
-      this.user.isAuth = true;
-      if(redirect) {
-        context.$router.push(redirect);        
-      }
-    })
-    .catch((err) => {
-      context.error = err
-    })
+    return context.$http.post(SIGNUP_URL, credentials);
   },
 
   // To log out, we just need to remove the token
@@ -51,14 +25,14 @@ var auth = {
     localStorage.removeItem('id_token');
     this.user.isAuth = false;
   },
-  
+
   checkAuth() {
     var jwt = localStorage.getItem('id_token');
     if(jwt) {
       this.user.isAuth = true;
     }
     else {
-      this.user.isAuth = false;      
+      this.user.isAuth = false;
     }
     console.log('checkAuth', this.user.isAuth, localStorage.getItem('id_token'));
   },

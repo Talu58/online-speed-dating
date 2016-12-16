@@ -6,7 +6,7 @@ import auth from './Auth/auth.js';
 import router from './Router/router.js';
 import store from './store.js';
 
-import login from './Components/loginController.js';
+// import login from './Components/loginController.js';
 import signup from './Components/signupController.js';
 import profileLink from './Components/profileLinkController.js';
 import navbar from './Components/navbarController.js';
@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 auth.checkAuth();
 
-Vue.component('login', login);
+// Vue.component('login', login);
 Vue.component('signup', signup);
 Vue.component('profilelink', profileLink);
 Vue.component('aboutus', aboutus);

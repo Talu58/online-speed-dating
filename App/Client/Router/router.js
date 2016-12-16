@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import landingPage from '../Components/landingPageController.js';
-import login from '../Components/loginController.js';
 import admin from '../Components/adminController.js';
 import video from '../Components/videoController.js';
 import signup from '../Components/signupController.js';
@@ -24,29 +23,43 @@ let routes = [
   {
     path: '/video',
     component: activeDate,
-  },
-  {
-    path: '/login',
-    component: login,
-  },
-  {
-    path: '/signup',
-    component: signup
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/Admin',
     component: admin,
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/myprofile/:id',
     // meta: { requiresAuth: true },
-    component: myProfile,
-    children: [{ path: 'edit', name: 'edit', component: profileCreate}],
+    component: blank,
+    children: [{
+      path: 'edit',
+      name: 'edit',
+      component: profileCreate
+    }, {
+      path: '',
+      component: myProfile}
+    ],
     beforeEnter: (to, from, next) => {
-      if(auth.user.isAuth) {
+      console.log('localstorage token id: ', localStorage['id_token']);
+      if (localStorage['id_token']) {
         next();
       } else {
-        next('/')
+        next('/');
       }
     }
   },
@@ -54,6 +67,13 @@ let routes = [
     path: '/profile/:id',
     // meta: { requiresAuth: true },
     component: profile,
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/events',
@@ -63,7 +83,14 @@ let routes = [
         path: '',
         component: events,
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/date/:dateid',
@@ -74,7 +101,14 @@ let routes = [
         path: 'active',
         component: activeDate,
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (localStorage['id_token']) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   }
 ];
 
