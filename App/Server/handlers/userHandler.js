@@ -1,7 +1,7 @@
 var userModel = require('../../Database/models/userModel.js');
 var db = require('../../Database/config.js');
 var User = require('../../Database/models/userModel.js');
-
+var config = require('../config.json')
 var jwt = require('jsonwebtoken');
 var _ = require('underscore');
 
@@ -49,8 +49,9 @@ exports.signUpUser = function (req, res) {
       newUser.save(function(err, user) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
+        console.log("USER.username", user.username)
         res.status(201).send({
-          id_token: jwt.sign(user.username,  "cream on chrome!"),
+          id_token: jwt.sign(user.username, config.secret),
           data: user
         });
       });
@@ -73,8 +74,9 @@ exports.loginUser = function(req, res) {
     console.log("user", user)
     if (err) { return res.status(400).send('getUserDB Bad Request'); }
     if (!user) { return res.sendStatus(401); }
+            console.log("USER.username", user.username)
     res.status(201).send({
-      id_token: jwt.sign(user.username, "cream on chrome!"),
+      id_token: jwt.sign(user.username, config.secret),
       data: user
     });
   })
