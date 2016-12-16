@@ -1,15 +1,11 @@
 <template>
   <div>
-    <div class="">
-      <div class="col-xs-4 eventCreation">
+    <div class="col-xs-4">
+      <div class="eventCreation">
         <p id="header"> Create an event </p>
         <form>
           <label class="col-xs-4 create">Event interest:</label>
           <input class="create" type="text" placeholder="Enter event type" v-model="eventType" >
-          <select v-model="selected">
-            <option v-for="interest in insterests">{insterest}</option>
-          </select>
-          <span>Selected: {{ selected }}</span>
           <br>
           <label class="col-xs-4 create">Event Name:</label>
           <input class="create" type="text" placeholder="Enter event name" v-model="eventName" >
@@ -17,8 +13,23 @@
           <label class="col-xs-4 create">Event Date:</label>
           <input class="create" type="datetime-local" placeholder="Enter a date" v-model="date">
           <br>
-          <button class="col-xs-4 col-xs-offset-4 btn btn-primary" role="button" v-on:click.prevent="submit">Create Event</button>
+          <button class="col-xs-4 col-xs-offset-4 btn btn-primary create" role="button" v-on:click.prevent="submit">Create Event</button>
         </form>
+      </div>
+      <div class="eventCreation">
+        <p id="header"> Next events </p>
+        <table class="col-xs-12 events-list">
+          <tr>
+              <th class="col-xs-4">Date</th>
+              <th class="col-xs-4">Event Name</th>
+              <th class="col-xs-4">Event Type</th>
+          </tr>
+          <tr v-for='event in this.allEvents' class="col-xs-4 eventCreation">
+            <td> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
+            <td> {{ event.eventName}}</td>
+            <td> {{ event.eventType }} </td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="col-xs-6">
@@ -43,6 +54,7 @@
     background: #5d868a;
     padding: 10px 10px 10px 10px;
     color: #fff;
+    text-align: center;
   }
   small {
     margin-left: 5px;
@@ -54,7 +66,10 @@
   .eventCreation {
     background: #5d868a;
     margin-left: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .create {
@@ -67,6 +82,12 @@
     padding-left: 10px;
   }
   */
+  .events-list {
+    width: 100%;
+  }
+
+  tr:hover {background-color: #f5f5f5}
+
   title {
     font: bold;
     color: #fff;
