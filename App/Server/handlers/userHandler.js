@@ -27,6 +27,11 @@ exports.createUserDB = function(user, cb) {
 exports.signUpUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
+  var age = req.body.age;
+  var gender = req.body.gender;
+  var location = req.body.location;
+  var interestedIn = req.body.interestedIn;
+
   console.log('REQ.BODY', req.body)
   User.findOne({username: username}).exec(function(err, user) {
     console.log('user', user)
@@ -34,7 +39,11 @@ exports.signUpUser = function (req, res) {
     if (!user) {
       var newUser =  new User ({
         username: username, 
-        password: password
+        password: password,
+        age: age,
+        gender: gender,
+        location: location,
+        interestedIn: interestedIn
       })
       newUser.save(function(err, user) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}

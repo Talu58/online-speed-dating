@@ -22,7 +22,11 @@ let signup = {
     signup () {
       let userData = {
         username: this.user.username,
-        password: this.user.password
+        password: this.user.password,
+        age: this.user.age,
+        gender: this.user.gender,
+        location: this.user.location,
+        interestedIn: this.user.interestedIn
       };
       auth.signup(this, userData, `/myprofile/${userData.username}`);
     }

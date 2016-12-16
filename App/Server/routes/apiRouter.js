@@ -16,11 +16,17 @@ router.route('/events')
 .post(eventHandler.postEvent)
 .put(eventHandler.updateEvent);
 
+router.route('/userBasic')
+.put(userHandler.updateUser);
+
+router.route('/userInterests')
+.put(userHandler.updateInterests);
+
+router.route('/userPersonal')
+.put(userHandler.updatePersonal);
+
 
 module.exports = router; 
-
-
-
 
 
 
