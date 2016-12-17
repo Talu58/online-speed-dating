@@ -12,7 +12,7 @@ var admin = {
       eventLocation: '',
       eventInterest: '',
       eventGender: '',
-      eventInterestedIn: '',
+      eventRelationshipType: '',
       currentEvent: ''
     };
   },
@@ -69,7 +69,7 @@ var admin = {
         eventLocation: this.eventLocation,
         eventType: this.eventInterest,
         eventGender: this.eventGender,
-        eventInterestedIn: this.eventInterestedIn
+        eventRelationshipType: this.eventRelationshipType
       };
       console.log(body);
       let dbUrl = '/api/events';
