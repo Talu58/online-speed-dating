@@ -30,10 +30,13 @@ var events = {
     },
 
     hasNotJoined (event) {
-      if (this.$store.state.user.events.indexOf(event._id) === -1) {
-        return true;
+      var flag = false;
+      for (var i = 0; i < this.$store.state.user.events; i++) {
+        if (this.$store.state.user.events[i]._id === event._id) {
+          flag = true;
+        }
       }
-      return false;
+      return flag;
     },
 
     join (event) {
