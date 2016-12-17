@@ -31,7 +31,7 @@
             <div class="row" >
                 <div v-if="match" id="eventColumn" class="col-md-7 col-md-offset-2">
                     <div>
-                        <h2 class="overhead">Events:</h2>
+                        <h2 class="overhead">Suggested Events:</h2>
                         <ul v-for='event in savedEvents'>
                             <div id="event" class="row">
                                 <a v-on:click="toDate(event)" id="clickEvent">
@@ -44,10 +44,14 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-md-9">
+                    <button class="btn btn-primary pull-right" v-on:click="goToEvents">See More</button>   <!-- redirectTo events page -->
+                </div>
+
                 <div v-else>
                     <div id="eventColumn" class="col-md-5">
                         <div>
-                            <h2 class="overhead">Events:</h2   >
+                            <h2 class="overhead">Events:</h2>
                             <ul v-for='event in events'>
                                 <div id="event" class="row">
                                     <a id="clickEvent">
@@ -74,6 +78,54 @@
             </div>
         </div>
         <!--<div>*Place holder for matchs*</div>-->
+
+        <div class="col-md-7 col-sm-offset-4">
+            <br><br>
+            <div class="row" >
+                <div v-if="match" id="eventColumn" class="col-md-7 col-md-offset-2">
+                    <div>
+                        <h2 class="overhead">My Events:</h2>
+                        <ul v-for='event in savedEvents'>
+                            <div id="event" class="row">
+                                <a v-on:click="toDate(event)" id="clickEvent">
+                                    <li id="eventDetails"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }} </li>
+                                    <li id="eventDetails"> {{ event.eventName }} </li>
+                                    <li id="eventDetails"> {{ event.eventType }} </li>
+                                    <li id="eventDetails">Go on date<button id="eventButton" class="glyphicon glyphicon-menu-right glyphicon glyphicon-glass" v-on:click="toDate(event)"></button></li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div v-else>
+                    <div id="eventColumn" class="col-md-5">
+                        <div>
+                            <h2 class="overhead">My Events:</h2>
+                            <ul v-for='event in events'>
+                                <div id="event" class="row">
+                                    <a id="clickEvent">
+                                        <li id="eventDetails"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }} </li>
+                                        <li id="eventDetails"> {{ event.eventName }} </li>
+                                        <li id="eventDetails"> {{ event.eventType }} </li>
+                                        <li id="eventDetails">Go on date<button id="eventButton" class="glyphicon glyphicon-menu-right glyphicon glyphicon-glass"></button></li>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id='matchHorizon' class="col-md-5 col-md-offset-1">
+                        <div>
+                            <span>Matches:</span>
+                            <ul v-for='match in matches'>
+                                <ul> {{ match.profileImg }}</ul>
+                                <ul> {{ match.name }} </ul>
+                                <ul> {{ match.location }} </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -101,7 +153,7 @@ h2.overhead {
     position: fixed;
     background-color: #5A666E;
 }
-#eventColumn {
+#eventColumn, #myEvent {
     border: 3px solid #759CF8;
     background-color: #334D61;
 }
@@ -138,6 +190,9 @@ h2.overhead {
     float: right;
     color: #75B2E1;
     padding-bottom: 3px;
+}
+.col-md-9 {
+    padding-right: 0;
 }
 
 </style>

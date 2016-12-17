@@ -1,6 +1,7 @@
 <template>
     <div>
         <div v-if="!checkAuth" class="center">
+
             <h2>Sign-up here!</h2>
                 <div class="row">
                     <div>
@@ -22,4 +23,8 @@
 </template>
 
 <style>
+    .jumbotron.link {
+        padding-left: 20px;
+        padding-right: 40px;
+    }
 </style>

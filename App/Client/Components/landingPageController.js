@@ -4,8 +4,8 @@ var app = {
   template: temp.template,
   data: function() {
     return { 
-      msg: 'Welcome To Do-We! ' + this.$store.state.user.username,
-      background: '../Images/background.jpg'
+      msg: 'Welcome To Bash To The Dating! ' + this.$store.state.user.username,
+      background: '../Images/landing-bg.jpg'
     };
   },
 

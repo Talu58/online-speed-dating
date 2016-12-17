@@ -9,7 +9,7 @@ var myProfile = {
   template: temp.template,
   data: function() {
     return {
-      msg: `${this.$store.state.user.username} Welcome To Do-We!`,
+      msg: `${this.$store.state.user.username} Welcome To Bash To The Dating!`,
       background: '../Images/background.jpg',
       savedEvents: '',
       profileImg: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg',
@@ -27,6 +27,9 @@ var myProfile = {
   },
 
   methods: {
+    goToEvents() {
+      this.$router.push('/events');
+    },
     toDate (event) {
       this.$router.push('/date/' + event._id + '/active');
     },
