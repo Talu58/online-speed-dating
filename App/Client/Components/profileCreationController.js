@@ -53,7 +53,11 @@ var profileCreation = {
         username: this.$store.state.user.username,
       };
       body[userProp] = updatedInfo;
-      this.$http.put('/api/userBasic', body)
+      this.$http.put('/api/userBasic', body, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
       .then((response) => {
         this.$store.commit('setUser', body);
       })
@@ -68,7 +72,11 @@ var profileCreation = {
       body['username'] = this.$store.state.user.username;
       console.log('body', body)
 
-      this.$http.put('/api/userPersonal', body)
+      this.$http.put('/api/userPersonal', body, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
       .then((response) => {
         console.log('response', response)
         console.log('body again', body)
@@ -83,7 +91,11 @@ var profileCreation = {
       var body = {username: this.$store.state.user.username};
       body[interest] = this.$data.interests[interest].value;
       console.log('body: ', body);
-      this.$http.put('/api/userInterests', body)
+      this.$http.put('/api/userInterests', body, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
       .then((response) => {
         console.log('response', response)
         console.log('body again', body)
