@@ -7,11 +7,9 @@
         <div id="profileColumn" class="col-md-2 col-sm-offset-1">
             <h1 id="username" >{{$route.params.id}}</h1>
             <div>
-<!--                 <img id="profileImg" v-bind:src="profileImg">
- -->            <div>
-                    <p id="profText"  >Name: {{user.name}}</p>
-                </div>
-                <div>
+                <img id="profileImg" v-bind:src='profileImg'>
+            </div>
+            <div>
                     <p id="profText">Gender: {{user.gender}}</p>
                 </div>
                 <div>
