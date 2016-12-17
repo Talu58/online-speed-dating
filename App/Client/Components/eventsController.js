@@ -21,8 +21,15 @@ var events = {
 
   methods: {
     getEvents () {
-      this.$http.get('/api/events')
+      this.$http.get(
+        '/api/events', 
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
       .then((res) => {
+        console.log(res)
         this.$store.commit('setAllEvents', res.body);
       })
       .catch((err) => { console.error('There was an err with your GET request, ', err); });

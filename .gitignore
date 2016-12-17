@@ -5,7 +5,7 @@ azure.err
 iisnode.yml
 
 # Secret Jwt key file
-config.js
+config.js§
 /public
 
 # Icon must ends with two \r.
