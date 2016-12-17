@@ -81,6 +81,7 @@ var admin = {
         this.date = '',
         this.eventType = '',
         this.eventName = '';
+        this.eventLocation = '';
 
       })
       .catch((err) => {

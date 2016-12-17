@@ -15,10 +15,11 @@ var myProfile = {
 
       match: true,
       user: this.$store.state.user,
+      admin: this.$store.state.user.admin,
       moment: moment
     };
   },
-  
+
   computed: {
     savedEvents () {
       return this.$store.state.savedEvents;
@@ -31,6 +32,9 @@ var myProfile = {
     },
     editProfile () {
       this.$router.push('/myprofile/' + this.username + '/edit');
+    },
+    goToAdmin () {
+      this.$router.push('/admin');
     }
   }
 };

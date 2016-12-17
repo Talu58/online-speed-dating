@@ -8,7 +8,7 @@
             <h1 id="username" >{{$route.params.id}}</h1>
             <div>
 <!--                 <img id="profileImg" v-bind:src="profileImg">
- -->                <div>
+ -->            <div>
                     <p id="profText"  >Name: {{user.name}}</p>
                 </div>
                 <div>
@@ -23,7 +23,11 @@
                 <div>
                     <p id="profText">Description: {{user.userinfo}}</p>
                 </div>
-           <div id="editButton"> <button class="glyphicon glyphicon-pencil" v-if='this.$store.state.user.username' v-on:click='editProfile'></button></div>
+                <div id="editButton">
+                    <button class="glyphicon glyphicon-pencil" v-if='this.$store.state.user.username' v-on:click='editProfile'></button>
+                </div>
+            <div id="adminButton" v-if="admin">
+                <button class="btn btn-primary" v-on:click='goToAdmin'>Admin</button></div>
             </div>
         </div>
         <div class="col-md-7 col-sm-offset-4">
