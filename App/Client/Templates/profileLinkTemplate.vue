@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div v-if='this.$store.state.user.username'>
-        </div>
-        <div v-else>
+        <div v-if="!checkAuth" class="center">
             <h2>Sign-up here!</h2>
                 <div class="row">
                     <div>

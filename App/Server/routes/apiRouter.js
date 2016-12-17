@@ -17,7 +17,10 @@ router.route('/user')
 .put(userHandler.updateUser);
 
 router.route('/user/events')
-.get(eventHandler.getSingleEvent);
+.get(eventHandler.getSingleEvent)
+
+router.route('/user/addEvent')
+.put(userHandler.addEvent)
 
 router.route('/events')
 .get(eventHandler.getEvents)

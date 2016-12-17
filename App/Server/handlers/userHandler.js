@@ -84,12 +84,6 @@ exports.loginUser = function(req, res) {
 };
 
 
-// TODO:
-exports.logoutUser = function(req, res) {
-  // req.logout();
-  res.status(200).send('logged out');
-}
-
 exports.updateUser = function (req, res) {
   User.findOneAndUpdate(
     {username: req.body.username},
@@ -112,7 +106,24 @@ exports.updatePersonal = function (req, res) {
   });
 };
 
+exports.addEvent = function(req, res) {
+  User.findOne({username: req.body.username}).exec(function(err,user) {
+    if(err) return res.status(400).send('Err! update event');
+    user.events.push(req.body.event);
+    user.save(function(err, user) {
+      if(err) { return res.status(400).send('Err! save event') }
+        console.log('saved event succesfully', user)
+        res.send(204);
+    })
+  })
+}
 
+exports.getUserEvents = function(req, res) {
+  User.findOne({username: req.body.username}).exec(function(err,user) {
+    if(err) return res.status(400).send('Err! update event');
+      res.status(200).json(user.events);
+    })
+  }
 
 
 // I'm not sure if this function is ever being used...

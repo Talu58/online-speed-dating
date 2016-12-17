@@ -33,6 +33,7 @@ let signup = {
         localStorage.setItem('id_token', response.body.id_token);
         this.user = response.body.data;
         this.user.isAuth = true;
+        auth.user.isAuth = true;
         this.$store.commit('setUser', this.user);
         this.$router.push(`/myprofile/${userData.username}`);
       })

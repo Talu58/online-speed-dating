@@ -18,13 +18,7 @@ var auth = {
   signup(context, credentials, redirect) {
     return context.$http.post(SIGNUP_URL, credentials);
   },
-
-  // To log out, we just need to remove the token
-  // logout() {
-  //   localStorage.removeItem('id_token');
-  //   this.user.isAuth = false;
-  // },
-
+  
   checkAuth() {
     var jwt = localStorage.getItem('id_token');
     if(jwt) {
@@ -33,8 +27,14 @@ var auth = {
     else {
       this.user.isAuth = false;
     }
-    console.log('checkAuth', this.user.isAuth, localStorage.getItem('id_token'));
   },
+
+  getHeaders () {
+    var obj = {
+                Authorization: 'Bearer ' + localStorage.getItem('id_token')
+              }
+    return obj;
+  }
 }
 
 export default auth;

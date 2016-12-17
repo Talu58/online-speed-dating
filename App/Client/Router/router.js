@@ -14,113 +14,83 @@ import activeDate from '../Components/activeDateController.js';
 import myProfile from '../Components/myProfileController.js';
 import auth from '../Auth/auth.js';
 
-
-let routes = [
+var routes = [
   {
     path: '/',
-    component: landingPage,
+    component: landingPage
   },
   {
     path: '/video',
-    component: activeDate,
-    beforeEnter: (to, from, next) => {
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+    component: activeDate
   },
   {
     path: '/Admin',
-    component: admin,
-    beforeEnter: (to, from, next) => {
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+    component: admin
   },
   {
     path: '/myprofile/:id',
-    // meta: { requiresAuth: true },
     component: blank,
     children: [{
-      path: 'edit',
-      name: 'edit',
-      component: profileCreate
-    }, {
-      path: '',
-      component: myProfile}
-    ],
-    beforeEnter: (to, from, next) => {
-      console.log('localstorage token id: ', localStorage['id_token']);
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+                path: 'edit',
+                component: profileCreate,
+                meta: { requiresAuth: true }
+              },
+              {
+                path: '',
+                component: myProfile,
+                meta: { requiresAuth: true }
+              }]
   },
   {
     path: '/profile/:id',
-    // meta: { requiresAuth: true },
-    component: profile,
-    beforeEnter: (to, from, next) => {
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+    meta: { requiresAuth: true },
+    component: profile
   },
   {
-    path: '/events',
+    path: '/events/:id',
     component: blank,
-    children: [
-      {
-        path: '',
-        component: events,
-      }
-    ],
-    beforeEnter: (to, from, next) => {
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+    meta: { requiresAuth: true },
+    children: [{
+                path: '',
+                component: events
+              }]
   },
   {
     path: '/date/:dateid',
-    // meta: { requiresAuth: true },
+    meta: { requiresAuth: true },
     component: blank,
-    children: [
-      {
-        path: 'active',
-        component: activeDate,
-      }
-    ],
-    beforeEnter: (to, from, next) => {
-      if (localStorage['id_token']) {
-        next();
-      } else {
-        next('/');
-      }
-    }
+    children: [{
+                path: 'active',
+                component: activeDate
+              }]
   }
 ];
 
-
-
-const router = new VueRouter({
-  // mode: 'history',
-  // base: __dirname,
-  routes: routes
+var router = new VueRouter({
+  routes
 });
 
-console.log('ROUTER obj', router)
+
+router.beforeEach((to, from, next) => { 
+  auth.checkAuth()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    console.log("TOFROMNEXT",to, from, next)
+    if (!auth.user.isAuth) {
+      console.log('isAuth?', auth.user.isAuth)
+      next({
+        path: '/',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      // auth.user.isAuth = true;
+      console.log('isAuth?(else)', auth.user.isAuth)
+      // to.store.state.user = from.store.state.user;
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+})
 
 export default router;
 

@@ -12,11 +12,13 @@ var myProfile = {
       msg: `${this.$store.state.user.username} Welcome To Do-We!`,
       background: '../Images/background.jpg',
       savedEvents: '',
+
       match: true,
       user: this.$store.state.user,
       moment: moment
     };
   },
+  
   computed: {
     savedEvents () {
       return this.$store.state.savedEvents;
@@ -29,9 +31,8 @@ var myProfile = {
     },
     editProfile () {
       this.$router.push('/myprofile/' + this.username + '/edit');
-    },
+    }
   }
-
 };
 
 export default myProfile;

@@ -16,18 +16,15 @@ import techstack from './Components/techStackController.js';
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-// UNCOMMENT LINE BELOW ONCE WE CAN RENDER THE NAVBAR FOR AUTH USER
-// Vue.http.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token');
-auth.checkAuth();
-
-// Vue.component('login', login);
+Vue.component('navbar', navbar);
 Vue.component('signup', signup);
 Vue.component('profilelink', profileLink);
-Vue.component('profilelink', profileLink);
 Vue.component('aboutus', aboutus);
-Vue.component('navbar', navbar);
 Vue.component('techstack', techstack);
 
+Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
+auth.checkAuth();
+console.log(auth.checkAuth())
 
 
 const app = new Vue({
@@ -35,3 +32,6 @@ const app = new Vue({
   router
 }).$mount('.app');
 
+
+// Vue.http.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token');
+// auth.checkAuth();

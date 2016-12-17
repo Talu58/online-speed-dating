@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import VueResource from 'vue-resource';
 import PubNub from 'pubnub';
 import PHONE from './Dependencies/pubnubWebrtc.js';
+// import auth from '../Auth/auth.js'
 
 Vue.use(Vuex);
 Vue.use(VueResource);
@@ -32,9 +33,9 @@ var store = new Vuex.Store({
   },
   mutations: {
     logout (state) {
-      state.user = {
-        isAuth: false
-      };
+      localStorage.removeItem('id_token');
+      console.log('satet user logout', state.user)
+      state.user.isAuth = false;
     },
 
     clearState(state) {
