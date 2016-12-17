@@ -17,7 +17,41 @@ import auth from '../Auth/auth.js';
 var routes = [
   {
     path: '/',
-    component: landingPage
+    component: landingPage,
+    name: 'landingPage'
+  },
+  {
+    path: '/myprofile/:id',
+    component: blank,
+    meta: { requiresAuth: true },
+    children: [{
+                path: 'edit',
+                name: 'edit',
+                component: profileCreate,
+                meta: { requiresAuth: true }
+              },
+              {
+                path: '',
+                name: 'myProfile',
+                component: myProfile,
+                meta: { requiresAuth: true }
+              },
+              {
+                path: 'events',
+                name: 'events',
+                component: events,
+                meta: { requiresAuth: true }
+             }]
+  },
+  
+  {
+    path: '/date/:dateid',
+    meta: { requiresAuth: true },
+    component: blank,
+    children: [{
+                path: 'active',
+                component: activeDate
+              }]
   },
   {
     path: '/video',
@@ -28,41 +62,8 @@ var routes = [
     component: admin
   },
   {
-    path: '/myprofile/:id',
-    component: blank,
-    children: [{
-                path: 'edit',
-                component: profileCreate,
-                meta: { requiresAuth: true }
-              },
-              {
-                path: '',
-                component: myProfile,
-                meta: { requiresAuth: true }
-              }]
-  },
-  {
-    path: '/profile/:id',
-    meta: { requiresAuth: true },
-    component: profile
-  },
-  {
-    path: '/events/:id',
-    component: blank,
-    meta: { requiresAuth: true },
-    children: [{
-                path: '',
-                component: events
-              }]
-  },
-  {
-    path: '/date/:dateid',
-    meta: { requiresAuth: true },
-    component: blank,
-    children: [{
-                path: 'active',
-                component: activeDate
-              }]
+    path: '/*',
+    component: landingPage
   }
 ];
 
@@ -72,20 +73,26 @@ var router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => { 
-  auth.checkAuth()
   if (to.matched.some(record => record.meta.requiresAuth)) {
     console.log("TOFROMNEXT",to, from, next)
-    if (!auth.user.isAuth) {
+    if (!window.localStorage['id_token']) {
       console.log('isAuth?', auth.user.isAuth)
-      next({
-        path: '/',
-        query: { redirect: to.fullPath }
+      redirect({
+        name: 'landingPage'
       })
     } else {
-      // auth.user.isAuth = true;
+      var username = window.localStorage['username'];
+      auth.user.isAuth = true;
+      console.log("111", to.fullPath)
+      console.log("222", window.localStorage['username'])
+      console.log('regex', to.fullPath.match('username'))
+      if(!to.fullPath.match(username)) {
+        console.log('stay put!')
+        next('/myprofile/' + username)
+      } else {
+        next()
+      }
       console.log('isAuth?(else)', auth.user.isAuth)
-      // to.store.state.user = from.store.state.user;
-      next()
     }
   } else {
     next() // make sure to always call next()!

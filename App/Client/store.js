@@ -22,12 +22,10 @@ var store = new Vuex.Store({
     currentRound: null,
     savedEvents: [],
     allEvents: [],
-    user: {
-      isAuth: (typeof localStorage.getItem('id_token')) === "string"
-    }
+    user: {}
   },
   getters: {
-    getProfileInfo(state, user) {
+    getProfileInfo(state) {
       console.log('GET PROFILE INFO', state.user);
       return state.user;
     }

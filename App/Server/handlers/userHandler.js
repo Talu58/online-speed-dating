@@ -31,7 +31,6 @@ exports.signUpUser = function (req, res) {
   var gender = req.body.gender;
   var location = req.body.location;
   var interestedIn = req.body.interestedIn;
-
   console.log('REQ.BODY', req.body)
   User.findOne({username: username}).exec(function(err, user) {
     console.log('user', user)
@@ -48,11 +47,11 @@ exports.signUpUser = function (req, res) {
 
       newUser.save(function(err, user) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
-        console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
-        console.log("USER.username", user.username)
+        console.log("SIGNUP SUCCESFUL - USER DATA: ", newUser);
+        console.log("USER.username", newUser.username)
         res.status(201).send({
-          id_token: jwt.sign(user.username, config.secret),
-          data: user
+          id_token: jwt.sign(newUser.username, config.secret),
+          data: newUser
         });
       });
     } else {
@@ -74,7 +73,7 @@ exports.loginUser = function(req, res) {
     console.log("user", user)
     if (err) { return res.status(400).send('getUserDB Bad Request'); }
     if (!user) { return res.sendStatus(401); }
-            console.log("USER.username", user.username)
+            console.log("USER.username", user)
     res.status(201).send({
       id_token: jwt.sign(user.username, config.secret),
       data: user
