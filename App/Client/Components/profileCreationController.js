@@ -70,6 +70,7 @@ var profileCreation = {
     updateUserPersonalInfo: function(personal) {
       var body = this.personal;
       body['username'] = this.$store.state.user.username;
+      console.log('are we even updating body', body)
 
       this.$http.put('/api/userPersonal', body, {
         headers: {
