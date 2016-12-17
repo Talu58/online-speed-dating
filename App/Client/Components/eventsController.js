@@ -7,7 +7,7 @@ var events = {
   template: temp.template,
   data () {
     return {
-      user: {}
+      user: this.$store.state.user
     };
   },
   created () {
@@ -37,6 +37,7 @@ var events = {
     },
 
     join (event) {
+      console.log("EVENTS", this.$store.state.user)
       //handles event creation within users array
       var currentUserEvents = this.$store.state.user.events;
       var savedUserEvents = this.$store.state.savedEvents;
@@ -45,13 +46,16 @@ var events = {
       if (currentUserEvents.indexOf(event._id) === -1 ) {
         event.usernames.push(this.$store.state.user.username);
         currentUserEvents.push(event._id);
+        console.log("!!1",this.$store.state.user)
+        var body = {
+           username: this.$store.state.user.username,
+           event: event
+        }
         this.$store.commit('setEvents', currentUserEvents);
-        this.$http.put('/api/userBasic', this.$store.state.user, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('id_token')
-          }
-        })
+        this.$http.put('/api/user/addEvent', body , 
+          { headers: auth.getHeaders()})
         .then((res) => {
+          console.log(res)
           savedUserEvents.push(event);
           this.$store.commit('addToSavedEvents', savedUserEvents);
         })

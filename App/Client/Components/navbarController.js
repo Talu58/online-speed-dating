@@ -46,7 +46,6 @@ const navbar = {
       };
       auth.login(this, userData, {headers: auth.getHeaders()})
       .then((response) => {
-        // debugger;
         auth.user.isAuth = true;
         console.log(response)
         localStorage.setItem('id_token', response.body.id_token);
