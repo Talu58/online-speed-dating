@@ -38,6 +38,7 @@ var admin = {
       })
       .then((res) => {
         var body = res.body;
+        console.log('BODY: ', body);
         this.$store.commit('setUser', body);
       })
       .catch((err) => console.error(err));
@@ -80,6 +81,7 @@ var admin = {
         this.date = '',
         this.eventType = '',
         this.eventName = '';
+        this.eventLocation = '';
 
       })
       .catch((err) => {
