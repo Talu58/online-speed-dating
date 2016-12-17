@@ -8,7 +8,12 @@ var admin = {
       interests: ['reading', 'cooking', 'traveling', 'outdoor', 'food', 'crafting', 'partying', 'animals', 'culture' ],
       date: '',
       eventType: '',
-      eventName: ''
+      eventName: '',
+      eventLocation: '',
+      eventInterest: '',
+      eventGender: '',
+      eventInterestedIn: '',
+      currentEvent: ''
     };
   },
   computed: {
@@ -59,8 +64,11 @@ var admin = {
     submit () {
       var body = {
         date: this.date,
-        eventType: this.eventType,
-        eventName: this.eventName
+        eventName: this.eventName,
+        eventLocation: this.eventLocation,
+        eventType: this.eventInterest,
+        eventGender: this.eventGender,
+        eventInterestedIn: this.eventInterestedIn
       };
       console.log(body);
       let dbUrl = '/api/events';
@@ -77,7 +85,15 @@ var admin = {
       .catch((err) => {
         console.error('Something went wrong with POST: ', err);
       });
+    },
+    updateCurrentEvent (eventName) {
+      for (var event in this.$store.state.allEvents) {
+        if (eventName === this.$store.state.allEvents[event].eventName) {
+          this.currentEvent = this.$store.state.allEvents[event];
+        }
+      }
     }
+
   },
 };
 

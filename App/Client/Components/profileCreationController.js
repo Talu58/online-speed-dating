@@ -59,28 +59,27 @@ var profileCreation = {
           }
         })
       .then((response) => {
-        this.$store.commit('setUser', body);
+        this.user[userProp] = updatedInfo;
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
       });
     },
 
     updateUserPersonalInfo: function(personal) {
-      // var body = {username: this.$store.state.user.username};
-      // body[personal] = this.$data.personal;
-      var body = this.$data.personal;
+      var body = this.personal;
       body['username'] = this.$store.state.user.username;
-      console.log('body', body)
 
       this.$http.put('/api/userPersonal', body, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('id_token')
-          }
-        })
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        }
+      })
       .then((response) => {
-        console.log('response', response)
-        console.log('body again', body)
-        this.$store.commit('setUser', body);
+        for (var key in this.personal) {
+          this.user[key] = this.personal[key];
+        }
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
       });
@@ -90,16 +89,17 @@ var profileCreation = {
       this.$data.interests[interest].value = !this.$data.interests[interest].value;
       var body = {username: this.$store.state.user.username};
       body[interest] = this.$data.interests[interest].value;
-      console.log('body: ', body);
+      console.log('body: ', interest);
       this.$http.put('/api/userInterests', body, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('id_token')
-          }
-        })
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        }
+      })
       .then((response) => {
         console.log('response', response)
-        console.log('body again', body)
-        this.$store.commit('setUser', body);
+        console.log('body again', this.interests[interest])
+        this.user[interest] = this.interests[interest].value;
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
       });
