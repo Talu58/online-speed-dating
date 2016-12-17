@@ -21,7 +21,7 @@
                     <p id="profText">Description: {{user.description}}</p>
                 </div>
                 <div id="editButton">
-                    <button class="glyphicon glyphicon-pencil" v-if='this.$store.state.user.username' v-on:click='editProfile'></button>
+                    <span><button class="glyphicon glyphicon-cog" v-if='this.$store.state.user.username' v-on:click='editProfile'></button></span>
                 </div>
             <div id="adminButton" v-if="admin">
                 <button class="btn btn-primary" v-on:click='goToAdmin'>Admin</button></div>
