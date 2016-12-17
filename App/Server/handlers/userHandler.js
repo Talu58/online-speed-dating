@@ -45,7 +45,7 @@ exports.signUpUser = function (req, res) {
         location: location,
         interestedIn: interestedIn
       })
-      
+
       newUser.save(function(err, user) {
         if (err) { return res.status(400).send('getUserDB Bad Request');}
         console.log("SIGNUP SUCCESFUL - USER DATA: ", user);
@@ -85,22 +85,24 @@ exports.loginUser = function(req, res) {
 
 
 exports.updateUser = function (req, res) {
+
+  console.log('this is req.body for update user basic', req.body)
   User.findOneAndUpdate(
     {username: req.body.username},
-    {$set: req.body}, function() {
+    {$set: req.body }, function() {
     res.send(204);
   });
 };
 
 exports.updateInterests = function (req, res) {
-  console.log('req.bdoy', req.body)
-  User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+  console.log('req.bdoy for updateInterest', req.body)
+  User.findOneAndUpdate({username: req.body.username}, {$set: req.body }, function() {
     res.send(204);
   });
 };
 
 exports.updatePersonal = function (req, res) {
-  console.log('req.bdoy', req.body)
+  console.log('req.bdoy for update personal: ', req.body)
   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
     res.send(204);
   });

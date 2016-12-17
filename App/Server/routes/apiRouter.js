@@ -37,7 +37,7 @@ router.route('/userPersonal')
 .put(userHandler.updatePersonal);
 
 
-module.exports = router; 
+module.exports = router;
 
 
 

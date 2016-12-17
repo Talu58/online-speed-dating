@@ -6,13 +6,13 @@ var userSchema = mongoose.Schema({
   password: {type: String, required: true},
   salt: String,
   profileImg: {type: String, default: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg'},
-  name: {type: String}, //rendered in vue
+  //name: {type: String}, //rendered in vue
   age: {type: Number, required: true},
   gender: {type: String, required: true},
   interestedIn: {type: String },
   location: {type: String, required: true},
 
-  userinfo: {type: String}, //rendered in vue
+  //userinfo: {type: String}, //rendered in vue
   firstname: {type: String},
   lastname: {type: String},
   phone: {type: Number},

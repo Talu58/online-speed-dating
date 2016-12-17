@@ -12,7 +12,7 @@ var myProfile = {
       msg: `${this.$store.state.user.username} Welcome To Do-We!`,
       background: '../Images/background.jpg',
       savedEvents: '',
-
+      profileImg: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg',
       match: true,
       user: this.$store.state.user,
       admin: this.$store.state.user.admin,

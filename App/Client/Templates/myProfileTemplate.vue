@@ -7,11 +7,9 @@
         <div id="profileColumn" class="col-md-2 col-sm-offset-1">
             <h1 id="username" >{{$route.params.id}}</h1>
             <div>
-<!--                 <img id="profileImg" v-bind:src="profileImg">
- -->            <div>
-                    <p id="profText"  >Name: {{user.name}}</p>
-                </div>
-                <div>
+                <img id="profileImg" v-bind:src='profileImg'>
+            </div>
+            <div>
                     <p id="profText">Gender: {{user.gender}}</p>
                 </div>
                 <div>
@@ -21,7 +19,7 @@
                     <p id="profText">Location: {{user.location}}</p>
                 </div>
                 <div>
-                    <p id="profText">Description: {{user.userinfo}}</p>
+                    <p id="profText">Description: {{user.description}}</p>
                 </div>
                 <div id="editButton">
                     <button class="glyphicon glyphicon-pencil" v-if='this.$store.state.user.username' v-on:click='editProfile'></button>
