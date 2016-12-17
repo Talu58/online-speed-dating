@@ -1,5 +1,5 @@
 <template>
-    <div class="row">are we even here?
+    <div class="row">
         <h1 class="col-xs-offset-1" id="updateTitle">Update Your Profile</h1>
         <div class="container-fluid col-xs-5 col-xs-offset-1">
             <h3>Basic info</h3>

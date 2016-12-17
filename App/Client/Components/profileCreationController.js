@@ -71,7 +71,6 @@ var profileCreation = {
     updateUserPersonalInfo: function(personal) {
       var body = this.personal;
       body['username'] = this.$store.state.user.username;
-      console.log('are we even updating body', body)
 
       this.$http.put('/api/userPersonal', body, {
         headers: {
@@ -92,7 +91,6 @@ var profileCreation = {
       this.$data.interests[interest].value = !this.$data.interests[interest].value;
       var body = {username: this.$store.state.user.username};
       body[interest] = this.$data.interests[interest].value;
-      console.log('what are we sending to the back as body? ', body);
       this.$http.put('/api/userInterests', body, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('id_token')
@@ -100,7 +98,6 @@ var profileCreation = {
       })
       .then((response) => {
         console.log('response', response)
-        // console.log('body again', this.interests[interest])
         this.user[interest] = this.interests[interest].value;
         this.$store.commit('setUser', this.user);
       })
