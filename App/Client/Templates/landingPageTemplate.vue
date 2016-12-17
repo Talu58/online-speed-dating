@@ -7,7 +7,5 @@
     <div class="col-md-3 col-md-offset-7">
       <profilelink></profilelink>
     </div>
-    <aboutus></aboutus>
-    <techstack></techstack>
 </div>
 </template>

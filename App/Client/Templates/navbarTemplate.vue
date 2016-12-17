@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="#" v-on:click.prevent="goToMyProfile">
