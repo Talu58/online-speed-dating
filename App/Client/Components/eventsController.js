@@ -30,10 +30,13 @@ var events = {
     },
 
     hasNotJoined (event) {
-      if (this.$store.state.user.events.indexOf(event._id) === -1) {
-        return true;
+      var flag = false;
+      for (var i = 0; i < this.$store.state.user.events; i++) {
+        if (this.$store.state.user.events[i]._id === event._id) {
+          flag = true;
+        }
       }
-      return false;
+      return flag;
     },
 
     join (event) {
@@ -48,11 +51,11 @@ var events = {
         currentUserEvents.push(event._id);
         console.log("!!1",this.$store.state.user)
         var body = {
-           username: this.$store.state.user.username,
-           event: event
-        }
+          username: this.$store.state.user.username,
+          event: event
+        };
         this.$store.commit('setEvents', currentUserEvents);
-        this.$http.put('/api/user/addEvent', body , 
+        this.$http.put('/api/user/addEvent', body ,
           { headers: auth.getHeaders()})
         .then((res) => {
           console.log(res)

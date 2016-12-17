@@ -5,7 +5,7 @@ var db = require('../../Database/config.js');
 //Request handlers
 exports.getEvents = (req, res) => {
   Event.find({}).exec((err, results) => {
-    if (err) { 
+    if (err) {
       throw err;
     }
     res.status(200).send(results);
@@ -15,7 +15,7 @@ exports.getEvents = (req, res) => {
 exports.postEvent = (req, res) => {
   let event = new Event(req.body);
   event.save((err, result) => {
-    if (err) { 
+    if (err) {
       console.error('Could not save to database..', err);
       res.status(400).send(result);
     } else {
@@ -25,6 +25,7 @@ exports.postEvent = (req, res) => {
 };
 
 exports.getSingleEvent = (req, res) => {
+  console.log('getting event');
   Event.findOne(req.query, (err, event) => {
     if (err) {
       res.status(500).send();
