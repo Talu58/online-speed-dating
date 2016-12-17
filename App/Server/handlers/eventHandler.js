@@ -13,7 +13,7 @@ exports.getEvents = (req, res) => {
   });
 };
 
-exports.postEvent = (req, res) => {
+exports.postEvent = (req, res) => {``
   let event = new Event(req.body);
   event.save((err, result) => {
     if (err) { 

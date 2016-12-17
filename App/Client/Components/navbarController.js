@@ -7,7 +7,9 @@ const navbar = {
   template: temp.template,
   data () {
     return {
-      user: {}
+      user: {
+        isAuth: auth.user.isAuth
+      }
     };
   },
   computed: {
@@ -19,30 +21,33 @@ const navbar = {
   methods: {
     checkAuth () {
       console.log("checkAuth", this.$store.state.user.isAuth)
-      return this.$store.state.user.isAuth;
+      return auth.user.isAuth;
     },
     goToMyProfile: function() {
-      this.$router.push('/myprofile/' + this.user.username);
+      if(this.checkAuth()) {
+        this.$router.push('/myprofile/' + this.user.username);
+      }
     },
     goToEditProfile: function() {
       this.$router.push('/myprofile/' + this.user.username + '/edit');
     },
     goToEvents: function() {
-      this.$router.push('/events');
+      this.$router.push('/events/' + this.user.username );
     },
     logout: function() {
-      localStorage.removeItem('id_token');
-      this.user.isAuth = false;
-      this.$router.push('/');
       this.$store.commit('logout');
+      auth.user.isAuth = false;
+      this.$router.push('/');
     },
     login () {
       var userData = {
         username: this.user.username,
         password: this.user.password
       };
-      auth.login(this, userData)
+      auth.login(this, userData, {headers: auth.getHeaders()})
       .then((response) => {
+        // debugger;
+        auth.user.isAuth = true;
         console.log(response)
         localStorage.setItem('id_token', response.body.id_token);
         this.user = response.data.data;

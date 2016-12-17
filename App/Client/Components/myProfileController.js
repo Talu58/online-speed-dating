@@ -31,7 +31,6 @@ var myProfile = {
       this.$router.push('/myprofile/' + this.username + '/edit');
     },
   }
-
 };
 
 export default myProfile;
