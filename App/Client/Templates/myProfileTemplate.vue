@@ -8,7 +8,6 @@
             <h1 id="username" >{{$route.params.id}}</h1>
             <div>
                 <img id="profileImg" v-bind:src='profileImg'>
-            </div>
             <div>
                     <p id="profText">Gender: {{user.gender}}</p>
                 </div>
