@@ -57,7 +57,11 @@ var events = {
         this.$store.commit('setEvents', currentUserEvents);
 
         //update user on db with new events array
-        this.$http.put('/api/userBasic', this.$store.state.user)
+        this.$http.put('/api/userBasic', this.$store.state.user, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
         .then((res) => {
           savedUserEvents.push(event);
           //update savedEvents with new event added to user
@@ -66,7 +70,11 @@ var events = {
         .catch((err) => { console.error('error ', err); });
 
         //update event on db with new usernames array
-        this.$http.put('/api/events', event)
+        this.$http.put('/api/events', event, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          }
+        })
         .then((res) => {
           this.getEvents();
         })
