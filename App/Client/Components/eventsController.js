@@ -30,10 +30,10 @@ var events = {
     },
 
     hasNotJoined (event) {
-      var flag = false;
-      for (var i = 0; i < this.$store.state.user.events; i++) {
-        if (this.$store.state.user.events[i]._id === event._id) {
-          flag = true;
+      var flag = true;
+      for (var i = 0; i < this.$store.state.savedEvents.length; i++) {
+        if (this.$store.state.savedEvents[i]._id === event._id) {
+          flag = false;
         }
       }
       return flag;

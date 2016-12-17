@@ -14,6 +14,7 @@ exports.getEvents = (req, res) => {
 
 exports.postEvent = (req, res) => {
   let event = new Event(req.body);
+  console.log('postEvent: ', req.body);
   event.save((err, result) => {
     if (err) {
       console.error('Could not save to database..', err);

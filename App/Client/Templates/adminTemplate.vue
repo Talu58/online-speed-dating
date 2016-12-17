@@ -59,16 +59,27 @@
     <div class="col-xs-6 eventCreation">
       <div class="" v-if="currentEvent">
         <p id="header">Event controller</p>
-        <div class="col-xs-2"> <strong>Name:</strong></div>
-        <div class="col-xs-2" >{{currentEvent.eventName}}</div>
+        <div class="event-controller-details">
+          <div class="col-xs-2"> <strong>Name:</strong></div>
+          <div class="col-xs-2" >{{currentEvent.eventName}}</div>
+          <div class="col-xs-2"><strong>Interest: </strong> </div>
+          <div class="col-xs-2">{{currentEvent.eventType}}</div>
+          <div class="col-xs-2"><strong>Location: </strong> </div>
+          <div class="col-xs-2">{{currentEvent.eventLocation}}</div>
+          <br>
+          <div class="col-xs-2"><strong>Gender: </strong> </div>
+          <div class="col-xs-2">{{currentEvent.eventGender}}</div>
+          <div class="col-xs-2"><strong>Relationship: </strong> </div>
+          <div class="col-xs-2">{{currentEvent.eventRelationshipType}}</div>
+        </div>
+        <div class="col-xs-2"><strong>Usernames: </strong></div>
         <br>
-        <div class="col-xs-2"><strong>Interest: </strong> </div>
-        <div class="col-xs-2">{{currentEvent.eventType}}</div>
+          <span v-for="users in currentEvent.usernames">{{users}}, </span>
         <div class="col-xs-12 button-control">
-          <div class='col-xs-2' > <button v-on:click.prevent="setupEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Setup Event</button></div>
-          <div class='col-xs-2' > <button v-on:click.prevent="startEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Start Event</button></div>
-          <div class='col-xs-2' ><button v-on:click.prevent="incrementRound(currentEvent)" type="submit" class="btn btn-primary btn-block">Increment Round</button></div>
-          <div class='col-xs-2' ><button v-on:click.prevent="endEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">End Event</button></div>
+          <div class='col-xs-3' > <button v-on:click.prevent="setupEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Setup Event</button></div>
+          <div class='col-xs-3' > <button v-on:click.prevent="startEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">Start Event</button></div>
+          <div class='col-xs-3' ><button v-on:click.prevent="incrementRound(currentEvent)" type="submit" class="btn btn-primary btn-block">Increment Round</button></div>
+          <div class='col-xs-3' ><button v-on:click.prevent="endEvent(currentEvent)" type="submit" class="btn btn-primary btn-block">End Event</button></div>
         </div>
       </div>
     </div>
@@ -118,6 +129,10 @@
 
   .button-control {
     margin-top: 30px;
+  }
+
+  .event-controller-details {
+    margin-bottom: 30px;
   }
   /*
   #signin_info {
