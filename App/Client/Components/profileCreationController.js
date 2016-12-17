@@ -49,6 +49,7 @@ var profileCreation = {
     },
 
     updateUserBasicInfo: function(userProp, updatedInfo) {
+      console.log('this.$store.state.user', this.$store.state.user)
       var body = {
         username: this.$store.state.user.username,
       };

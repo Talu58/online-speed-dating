@@ -85,6 +85,8 @@ exports.loginUser = function(req, res) {
 
 
 exports.updateUser = function (req, res) {
+
+  console.log('this is req.body in the back-end', req.body)
   User.findOneAndUpdate(
     {username: req.body.username},
     {$set: req.body}, function() {
@@ -94,7 +96,7 @@ exports.updateUser = function (req, res) {
 
 exports.updateInterests = function (req, res) {
   console.log('req.bdoy', req.body)
-  User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
+  User.findOneAndUpdate({username: req.body.username}, {$set: {firstname: 100} }, function() {
     res.send(204);
   });
 };
