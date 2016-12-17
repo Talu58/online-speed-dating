@@ -34,7 +34,7 @@
 					  <input type="radio" name="inlineRadioOptions2" value="Both" id="Both" v-model="user.interestedIn"> Both
 					</label>
 				</div>
-        <div class="checkbox col-xs-6 jumbotron">
+        <div class="checkbox col-xs-6 jumbotron log">
           <label>
              <input type="checkbox">keep me logged-in
           </label>
@@ -50,11 +50,16 @@
   .jumbotron{
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 40px;
+    padding-right: 15px;
+    padding-left: 20px;
     margin: 0;
   }
   .jumbotron.click {
     padding-bottom: 25px;
+    padding-left: 5px;
   }
-
+  .jumbotron.log {
+    padding-bottom: 19px;
+    padding-right: 0;
+  }
 </style>
