@@ -48,11 +48,11 @@ var events = {
         currentUserEvents.push(event._id);
         console.log("!!1",this.$store.state.user)
         var body = {
-           username: this.$store.state.user.username,
-           event: event
-        }
+          username: this.$store.state.user.username,
+          event: event
+        };
         this.$store.commit('setEvents', currentUserEvents);
-        this.$http.put('/api/user/addEvent', body , 
+        this.$http.put('/api/user/addEvent', body ,
           { headers: auth.getHeaders()})
         .then((res) => {
           console.log(res)

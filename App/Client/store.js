@@ -76,7 +76,11 @@ var store = new Vuex.Store({
       for (var key in obj) {
         state.user[key] = obj[key];
         state.isCallerFlag = obj.callList[0];
+        if (key === 'events') {
+          state.savedEvents = obj[key];
+        }
       }
+      console.log('saved events: ', state.savedEvents);
       // store.getters.getProfileInfo;
     },
     setSavedEvents(state, arr ) {
