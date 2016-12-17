@@ -15,6 +15,7 @@ var profileCreation = {
         phone: {value: this.$store.state.user.phone}
       },
       personal: {
+        //why don't we also edit it to be {value: xxx}?
         divorced: this.$store.state.user.divorced,
         kids: this.$store.state.user.kids,
         description: this.$store.state.user.description
@@ -91,7 +92,7 @@ var profileCreation = {
       this.$data.interests[interest].value = !this.$data.interests[interest].value;
       var body = {username: this.$store.state.user.username};
       body[interest] = this.$data.interests[interest].value;
-      console.log('body: ', interest);
+      console.log('what are we sending to the back as body? ', body);
       this.$http.put('/api/userInterests', body, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('id_token')
@@ -99,7 +100,7 @@ var profileCreation = {
       })
       .then((response) => {
         console.log('response', response)
-        console.log('body again', this.interests[interest])
+        // console.log('body again', this.interests[interest])
         this.user[interest] = this.interests[interest].value;
         this.$store.commit('setUser', this.user);
       })

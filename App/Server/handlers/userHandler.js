@@ -86,23 +86,23 @@ exports.loginUser = function(req, res) {
 
 exports.updateUser = function (req, res) {
 
-  console.log('this is req.body in the back-end', req.body)
+  console.log('this is req.body for update user basic', req.body)
   User.findOneAndUpdate(
     {username: req.body.username},
-    {$set: {location:'outer space'} }, function() {
+    {$set: req.body }, function() {
     res.send(204);
   });
 };
 
 exports.updateInterests = function (req, res) {
-  console.log('req.bdoy', req.body)
+  console.log('req.bdoy for updateInterest', req.body)
   User.findOneAndUpdate({username: req.body.username}, {$set: req.body }, function() {
     res.send(204);
   });
 };
 
 exports.updatePersonal = function (req, res) {
-  console.log('req.bdoy', req.body)
+  console.log('req.bdoy for update personal: ', req.body)
   User.findOneAndUpdate({username: req.body.username}, {$set: req.body}, function() {
     res.send(204);
   });

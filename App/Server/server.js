@@ -10,9 +10,8 @@ var User = require('../Database/models/userModel.js');
 var app = express();
 var PORT = process.env.PORT || 4321;
 
-
-
 require('./middleware.js')(app, express);
+
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/event', eventRouter);
@@ -27,9 +26,8 @@ app.get('/apix/users', function(req, res) {
   });
 });
 
-
 app.listen(PORT, function() {
-  console.log('Express listening on port', PORT); 
+  console.log('Express listening on port', PORT);
 });
 
 
