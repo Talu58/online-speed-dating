@@ -1,5 +1,6 @@
 import temp from '../Templates/adminTemplate.vue';
 import moment from 'moment';
+import auth from '../Auth/auth.js';
 
 var admin = {
   template: temp.template,
@@ -73,7 +74,7 @@ var admin = {
       };
       console.log(body);
       let dbUrl = '/api/events';
-      this.$http.post(dbUrl, body)
+      this.$http.post(dbUrl, body, {headers: auth.getHeaders()})
       .then((res) => {
         console.log(res.body);
         this.$store.commit( 'setNewEvent', res.body);
