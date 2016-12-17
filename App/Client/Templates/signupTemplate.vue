@@ -55,11 +55,11 @@
     margin: 0;
   }
   .jumbotron.click {
-    padding-bottom: 25px;
+    padding-bottom: 19px;
     padding-left: 5px;
   }
   .jumbotron.log {
-    padding-bottom: 19px;
+    padding-bottom: 33px;
     padding-right: 0;
   }
 </style>

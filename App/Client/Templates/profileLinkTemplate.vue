@@ -31,7 +31,7 @@
     h2.jumbotron.sup {
         padding-top: 28px;
         padding-left: 42px;
-        width: 284px;
+        margin: 0;
     }
     .social-buttons.jumbotron {
         padding-left: 45px;
