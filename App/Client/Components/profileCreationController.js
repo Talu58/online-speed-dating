@@ -59,7 +59,8 @@ var profileCreation = {
           }
         })
       .then((response) => {
-        this.$store.commit('setUser', body);
+        this.user[userProp] = updatedInfo;
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
       });
