@@ -23,6 +23,7 @@ auth.checkAuth();
 // Vue.component('login', login);
 Vue.component('signup', signup);
 Vue.component('profilelink', profileLink);
+Vue.component('profilelink', profileLink);
 Vue.component('aboutus', aboutus);
 Vue.component('navbar', navbar);
 Vue.component('techstack', techstack);
