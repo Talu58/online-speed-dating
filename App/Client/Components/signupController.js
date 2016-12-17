@@ -1,5 +1,5 @@
 import temp from '../Templates/signupTemplate.vue';
-import auth from '../Auth/auth.js'
+import auth from '../Auth/auth.js';
 
 
 let signup = {

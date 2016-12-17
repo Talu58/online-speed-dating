@@ -44,14 +44,17 @@ var fbUserSchema = mongoose.Schema({
   fbID: String,
   email: {type: String, lowercase: true},
   name: String
-})
+});
 
 
 var eventSchema = mongoose.Schema({
   date: {type: Date, required: true },
   usernames: {type: Array, default: []},
-  eventType: {type: String, default: ''},
+  eventType: {type: String, required: true, default: ''},
   eventName: {type: String, required: true, index: { unique: true }, default: ''},
+  eventLocation: {type: String, required: true},
+  eventGender: {type: String, required: true},
+  eventRelationshipType: {type: String, required: true},
   eventCallDuration: {type: Number, default: 300000}
 });
 
