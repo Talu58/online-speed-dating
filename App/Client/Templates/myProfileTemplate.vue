@@ -19,7 +19,7 @@
                     <p id="profText">Location: {{user.location}}</p>
                 </div>
                 <div>
-                    <p id="profText">Description: {{user.userinfo}}</p>
+                    <p id="profText">Description: {{user.description}}</p>
                 </div>
                 <div id="editButton">
                     <button class="glyphicon glyphicon-pencil" v-if='this.$store.state.user.username' v-on:click='editProfile'></button>
