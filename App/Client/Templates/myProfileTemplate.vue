@@ -33,7 +33,7 @@
                     <div>
                         <h2 class="overhead">Suggested Events:</h2>
                         <div class="suggested-events-list">
-                            <ul v-for='event in savedEvents'>
+                            <ul v-for='event in allEvents'>
                                 <div id="event" class="row">
                                     <a v-on:click="toDate(event)" id="clickEvent">
                                         <li id="eventDetails"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }} </li>
