@@ -192,6 +192,7 @@ var store = new Vuex.Store({
 
     addToSavedEvents(state, arr) {
       state.savedEvents = arr;
+      console.log('state.savedEvents: ', state.savedEvents);
     }
   }
 });

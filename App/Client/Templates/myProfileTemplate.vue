@@ -32,16 +32,18 @@
                 <div v-if="match" id="eventColumn" class="col-md-7 col-md-offset-2">
                     <div>
                         <h2 class="overhead">Suggested Events:</h2>
-                        <ul v-for='event in savedEvents'>
-                            <div id="event" class="row">
-                                <a v-on:click="toDate(event)" id="clickEvent">
-                                    <li id="eventDetails"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }} </li>
-                                    <li id="eventDetails"> {{ event.eventName }} </li>
-                                    <li id="eventDetails"> {{ event.eventType }} </li>
-                                    <li id="eventDetails">Go on date<button id="eventButton" class="glyphicon glyphicon-menu-right glyphicon glyphicon-glass" v-on:click="toDate(event)"></button></li>
-                                </a>
-                            </div>
-                        </ul>
+                        <div class="suggested-events-list">
+                            <ul v-for='event in savedEvents'>
+                                <div id="event" class="row">
+                                    <a v-on:click="toDate(event)" id="clickEvent">
+                                        <li id="eventDetails"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }} </li>
+                                        <li id="eventDetails"> {{ event.eventName }} </li>
+                                        <li id="eventDetails"> {{ event.eventType }} </li>
+                                        <li id="eventDetails">Go on date<button id="eventButton" class="glyphicon glyphicon-menu-right glyphicon glyphicon-glass" v-on:click="toDate(event)"></button></li>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -173,6 +175,10 @@ h2.overhead {
     background-color: black;
     padding-top: 2  px;
     padding-bottom: 2px;
+}
+.suggested-events-list {
+    height: 280px;
+    overflow-y: auto;
 }
 /*#eventDetails:nth-child(even) {
     border: 1px solid tomato;
