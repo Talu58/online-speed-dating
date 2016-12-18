@@ -72,6 +72,10 @@ var events = {
       }
     },
 
+    unjoin(event) {
+      console.log('inside of unjoin event function')
+    },
+
     moment: function (date) {
       return moment(date);
     }
