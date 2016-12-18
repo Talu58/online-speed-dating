@@ -10,6 +10,7 @@ Vue.use(VueResource);
 
 var store = new Vuex.Store({
   state: {
+    interests: ['reading', 'cooking', 'traveling', 'outdoor', 'food', 'crafting', 'partying', 'animals', 'culture' ],
     videoOutSrc: '',
     myVideoSrc: '',
     beforeEventFlag: true,
@@ -183,7 +184,25 @@ var store = new Vuex.Store({
     },
 
     setAllEvents (state, arr) {
-      state.allEvents = arr;
+      if (state.user.admin) {
+        state.allEvents = arr;
+      } else {
+        var temp = [];
+        for (var i = 0; i < arr.length; i++) {
+          for (var j = 0; j < state.interest.length; j++) {
+            if (arr[i].eventRelationshipType === 'homosexual') {
+              if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
+                temp.push(arr[i]);
+              }
+            } else {
+              if (state.user.gender !== state.user.interestedIn) {
+                temp.push(arr[i]);
+              }
+            }
+          }
+        }
+        state.allEvents = temp;
+      }
     },
 
     setNewEvent (state, event) {
