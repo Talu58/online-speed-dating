@@ -184,19 +184,30 @@ var store = new Vuex.Store({
     },
 
     setAllEvents (state, arr) {
+      //The admin should have access to all events
       if (state.user.admin) {
         state.allEvents = arr;
       } else {
+        //building an array of interests from user
+        var userInterests = [];
+        for (var i = 0; i < state.interests.length; i++) {
+          if (state.user[state.interests[i]]) {
+            userInterests.push(state.interests[i]);
+          }
+        }
+        //Setting a temporary storage for the Events related to the current user
         var temp = [];
         for (var i = 0; i < arr.length; i++) {
-          for (var j = 0; j < state.interest.length; j++) {
-            if (arr[i].eventRelationshipType === 'homosexual') {
-              if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
-                temp.push(arr[i]);
-              }
-            } else {
-              if (state.user.gender !== state.user.interestedIn) {
-                temp.push(arr[i]);
+          for (var j = 0; j < userInterests.length; j++) {
+            if (arr[i].eventType === userInterests[j]) {
+              if (arr[i].eventRelationshipType === 'homosexual') {
+                if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
+                  temp.push(arr[i]);
+                }
+              } else {
+                if (state.user.gender !== state.user.interestedIn) {
+                  temp.push(arr[i]);
+                }
               }
             }
           }
