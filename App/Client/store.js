@@ -198,16 +198,28 @@ var store = new Vuex.Store({
         //Setting a temporary storage for the Events related to the current user
         var temp = [];
         for (var i = 0; i < arr.length; i++) {
-          for (var j = 0; j < userInterests.length; j++) {
-            if (arr[i].eventType === userInterests[j]) {
-              if (arr[i].eventRelationshipType === 'homosexual') {
-                if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
-                  temp.push(arr[i]);
+          if (userInterests.length !== 0) {
+            for (var j = 0; j < userInterests.length; j++) {
+              if (arr[i].eventType === userInterests[j]) {
+                if (arr[i].eventRelationshipType === 'homosexual') {
+                  if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
+                    temp.push(arr[i]);
+                  }
+                } else {
+                  if (state.user.gender !== state.user.interestedIn) {
+                    temp.push(arr[i]);
+                  }
                 }
-              } else {
-                if (state.user.gender !== state.user.interestedIn) {
-                  temp.push(arr[i]);
-                }
+              }
+            }
+          } else {
+            if (arr[i].eventRelationshipType === 'homosexual') {
+              if ((arr[i].eventGender === state.user.gender) && (state.user.gender === state.user.interestedIn)) {
+                temp.push(arr[i]);
+              }
+            } else {
+              if (state.user.gender !== state.user.interestedIn) {
+                temp.push(arr[i]);
               }
             }
           }
