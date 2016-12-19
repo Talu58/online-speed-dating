@@ -54,8 +54,32 @@ var myProfile = {
     },
     goToAdmin () {
       this.$router.push('/admin');
+    },
+    suggestedEvents:  function(arr) {
+      console.log('IN');
+      if(arr) {
+        var temp = [];
+        for (var i = 0; i < arr.length; i++) {
+          var belongsTo = false
+          for (var j = 0; j < arr.length; j++) {
+            if (arr[i].eventName === this.savedEvents[j].eventName) {
+              belongsTo = true;
+            }
+          }
+          if (!belongsTo) {
+            temp.push(arr[i]);
+          }
+        }
+        console.log('temp: ', temp);
+        return temp;
+      }
     }
+  },
+  beforeUpdate: function() {
+    this.suggestedEvents(this.allEvents);
   }
+
 };
+
 
 export default myProfile;
