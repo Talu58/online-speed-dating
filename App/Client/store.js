@@ -22,12 +22,18 @@ var store = new Vuex.Store({
     currentRound: null,
     savedEvents: [],
     allEvents: [],
-    user: {}
+    user: {
+      isAuth: (typeof localStorage.getItem('id_token')) === "string"
+    }
   },
   getters: {
-    getProfileInfo(state) {
+    getProfileInfo(state, user) {
       console.log('GET PROFILE INFO', state.user);
       return state.user;
+    },
+
+    getall (state, user) {
+      return state.savedEvents;
     }
   },
   mutations: {
@@ -79,6 +85,8 @@ var store = new Vuex.Store({
           state.savedEvents = obj[key];
         }
       }
+      this.$router.push(`/myprofile/${userData.username}`);
+
       console.log('saved events: ', state.savedEvents);
       // store.getters.getProfileInfo;
     },

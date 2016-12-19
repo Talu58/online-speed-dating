@@ -17,8 +17,13 @@ const profileLink = {
     },
     checkAuth() {
       return auth.user.isAuth
-    },
-    
+    }
+  },
+
+  methods: {
+    checkAuth() {
+      return auth.user.isAuth
+    }
   }
 };
 

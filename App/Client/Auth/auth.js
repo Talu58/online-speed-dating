@@ -11,18 +11,12 @@ var auth = {
     isAuth: false
   },
   // Send a request to the login URL and save the returned JWT
-  login(context, credentials, redirect) {
+  login(context, credentials) {
     return context.$http.post(LOGIN_URL, credentials)
   },
 
-  signup(context, credentials, redirect) {
+  signup(context, credentials) {
     return context.$http.post(SIGNUP_URL, credentials)
-  },
-
-  logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('userData');
-    this.user.isAuth = false;
   },
   
   checkAuth() {

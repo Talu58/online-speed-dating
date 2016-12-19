@@ -1,6 +1,5 @@
 import temp from '../Templates/signupTemplate.vue';
-import {mapState} from 'vuex';
-import auth from '../Auth/auth.js'
+import auth from '../Auth/auth.js';
 
 
 let signup = {
@@ -14,8 +13,7 @@ let signup = {
         age: '',
         gender: '',
         location: '',
-        interestedIn: '',
-        isAuth: !!(localStorage['id_token'])
+        interestedIn: ''
       }
     };
   },
@@ -30,19 +28,15 @@ let signup = {
         location: this.user.location,
         interestedIn: this.user.interestedIn
       };
-      var context = this;
       auth.signup(this, userData)
       .then((response) => {
-        console.log('RESP', response)
         auth.user.isAuth = true;
-        response.data.data.password ="";
-        localStorage.setItem('id_token', response.data.id_token);
-        localStorage.setItem('username', userData.username)
-        context.user = response.data.data;
-        context.user.isAuth = true;
-        context.$store.commit('setUser', context.user);
-        console.log("CONTEXT", context.user)
-        context.$router.push(`/myprofile/${response.data.data.username}`);
+        localStorage.setItem('id_token', response.body.id_token);
+        this.user = response.body.data;
+        this.user.isAuth = true;
+        console.log('LOGIN RESPONSE', response)
+        this.$router.push(`/myprofile/${userData.username}`);
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
         this.error = err;

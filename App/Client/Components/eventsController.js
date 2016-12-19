@@ -23,7 +23,6 @@ var events = {
     getEvents () {
       this.$http.get('/api/events', { headers: auth.getHeaders()})
       .then((res) => {
-        console.log("events", res)
         this.$store.commit('setAllEvents', res.body);
       })
       .catch((err) => { console.error('There was an err with your GET request, ', err); });
