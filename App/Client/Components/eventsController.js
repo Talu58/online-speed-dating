@@ -75,8 +75,7 @@ var events = {
       var currentUserEvents = this.$store.state.user.events;
       var savedUserEvents = this.$store.state.savedEvents;
 
-//basically the same thing, the 2 below:
-      console.log('currentUserEvents before', currentUserEvents)
+      // console.log('currentUserEvents before', currentUserEvents)
       // console.log('savedUserEvents before', savedUserEvents)
 
 //remove the chosen event out of the user's events collection
@@ -84,16 +83,18 @@ var events = {
         if (currentUserEvents[i]._id === event._id) {
           currentUserEvents.splice(i, 1);
           //savedUserEvents.splice(i, 1);
-                console.log('currentUserEvents after', currentUserEvents)
-
-          this.$store.commit('setEvents', currentUserEvents);
+          console.log('currentUserEvents after', currentUserEvents)
           //this.$store.commit('addToSavedEvents', savedUserEvents);
         }
       }
+      this.$store.commit('setEvents', currentUserEvents);
+
 //remove the current user out of the chosen event's user list
-      // if (event.usernames.includes(this.$store.state.user.username)) {
-      //   event.usernames.splice(this.$store.state.user.username)
-      // }
+      for (var i = 0; i < event.usernames.length; i++) {
+        if (event.usernames[i] === this.$store.state.user.username) {
+          event.usernames.splice(i, 1)
+        }
+      }
 
       var body = {
         username: this.$store.state.user.username,
@@ -104,6 +105,12 @@ var events = {
       this.$http.put('/api/user/unjoinEvent', body, { headers: auth.getHeaders()})
       .then((res) => {
         console.log('res',res);
+        for (var i = 0 ; i < savedUserEvents.length; i++) {
+          if (savedUserEvents[i]._id === event._id) {
+            savedUserEvents.splice(i,1)
+          }
+        }
+        this.$store.commit('addToSavedEvents', savedUserEvents);
       })
       .catch((err) => {
         console.error('error ', err);
