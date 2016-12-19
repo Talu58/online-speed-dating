@@ -20,8 +20,7 @@ const navbar = {
 
   methods: {
     checkAuth () {
-      console.log("checkAuth", this.$store.state.user.isAuth)
-      return auth.user.isAuth;
+      return this.$store.state.user.isAuth;
     },
     goToMyProfile: function() {
       if(this.checkAuth()) {
@@ -44,15 +43,14 @@ const navbar = {
         username: this.user.username,
         password: this.user.password
       };
-      auth.login(this, userData, {headers: auth.getHeaders()})
+      auth.login(this, userData)
       .then((response) => {
         auth.user.isAuth = true;
-        console.log(response)
         localStorage.setItem('id_token', response.body.id_token);
-        this.user = response.data.data;
+        this.user = response.body.data;
         this.user.isAuth = true;
-        this.$store.commit('setUser', this.user);
         this.$router.push(`/myprofile/${userData.username}`);
+        this.$store.commit('setUser', this.user);
       })
       .catch((err) => {
         this.error = err;

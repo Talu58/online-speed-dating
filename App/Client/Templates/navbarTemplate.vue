@@ -25,7 +25,7 @@
               <input type="password" class="form-control" placeholder="Password" v-model="user.password">
           </div>
           <div class="form-group">
-              <button class="btn btn-primary btn-block" v-on:click="login">Sign in</button>
+              <button class="btn btn-primary btn-block" v-on:click="login()">Sign in</button>
           </div>
         </div>
       </form>

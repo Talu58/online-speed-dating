@@ -11,12 +11,12 @@ var auth = {
     isAuth: false
   },
   // Send a request to the login URL and save the returned JWT
-  login(context, credentials, redirect) {
-    return context.$http.post(LOGIN_URL, credentials);
+  login(context, credentials) {
+    return context.$http.post(LOGIN_URL, credentials)
   },
 
-  signup(context, credentials, redirect) {
-    return context.$http.post(SIGNUP_URL, credentials);
+  signup(context, credentials) {
+    return context.$http.post(SIGNUP_URL, credentials)
   },
   
   checkAuth() {
