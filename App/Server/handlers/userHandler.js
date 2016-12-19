@@ -118,7 +118,25 @@ exports.addEvent = function(req, res) {
         res.send(204);
     })
   })
-}
+};
+
+exports.unjoinEvent = function(req, res) {
+  console.log('rec\'d put request from front-end ', req.body )
+  User.findOne({username: req.body.username}).exec(function(err,user) {
+    if(err) return res.status(400).send('Err occured when deleting event(s)!');
+
+    for (var i = 0; i < user.events.length; i++) {
+      if (user.events[i]._id===req.body.event._id) {
+        user.events.splice(i, 1);
+      }
+    }
+    user.save(function(err, user) {
+      if(err) { return res.status(400).send('Err! save event') }
+        res.send(204);
+    })
+  })
+};
+
 
 exports.getUserEvents = function(req, res) {
   User.findOne({username: req.body.username}).exec(function(err,user) {

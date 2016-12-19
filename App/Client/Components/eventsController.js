@@ -40,7 +40,6 @@ var events = {
     },
 
     join (event) {
-      console.log("EVENTS", this.$store.state.user)
       //handles event creation within users array
       var currentUserEvents = this.$store.state.user.events;
       var savedUserEvents = this.$store.state.savedEvents;
@@ -70,6 +69,51 @@ var events = {
         })
         .catch((err) => { console.error('error ', err); });
       }
+    },
+
+    unjoin(event) {
+      var currentUserEvents = this.$store.state.user.events;
+      var savedUserEvents = this.$store.state.savedEvents;
+
+//remove the chosen event out of the user's events collection
+      for (var i = 0; i< currentUserEvents.length; i++) {
+        if (currentUserEvents[i]._id === event._id) {
+          currentUserEvents.splice(i, 1);
+        }
+      }
+      this.$store.commit('setEvents', currentUserEvents);
+
+//remove the current user out of the chosen event's user list
+      for (var i = 0; i < event.usernames.length; i++) {
+        if (event.usernames[i] === this.$store.state.user.username) {
+          event.usernames.splice(i, 1)
+        }
+      }
+
+      var body = {
+        username: this.$store.state.user.username,
+        event: event
+      }
+
+      this.$http.put('/api/user/unjoinEvent', body, { headers: auth.getHeaders()})
+      .then((res) => {
+        for (var i = 0 ; i < savedUserEvents.length; i++) {
+          if (savedUserEvents[i]._id === event._id) {
+            savedUserEvents.splice(i,1)
+          }
+        }
+        this.$store.commit('addToSavedEvents', savedUserEvents);
+      })
+      .catch((err) => {
+        console.error('error ', err);
+      });
+
+      this.$http.put('/api/events', event, { headers: auth.getHeaders() } )
+      .then((res) => {
+        this.getEvents();
+      })
+      .catch((err) => { console.error('error ', err); });
+
     },
 
     moment: function (date) {
