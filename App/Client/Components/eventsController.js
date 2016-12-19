@@ -48,7 +48,7 @@ var events = {
       //check to see if event is in curren users event list
       if (currentUserEvents.indexOf(event._id) === -1 ) {
         event.usernames.push(this.$store.state.user.username);
-        currentUserEvents.push(event._id);
+        // currentUserEvents.push(event._id);
         console.log("!!1",this.$store.state.user)
         var body = {
           username: this.$store.state.user.username,

@@ -42,18 +42,20 @@
       </div>
       <div class="eventList">
         <p id="header"> Next events </p>
-        <table class="col-xs-12">
-          <tr>
-              <th class="col-xs-4">Date</th>
-              <th class="col-xs-4">Event Name</th>
-              <th class="col-xs-4">Event Type</th>
-          </tr>
-          <tr v-for='event in this.allEvents' v-on:click.prevent="updateCurrentEvent(event.eventName)">
-            <td class="col-xs-4"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
-            <td class="col-xs-4"> {{ event.eventName}}</td>
-            <td class="col-xs-4"> {{ event.eventType }} </td>
-          </tr>
-        </table>
+        <div class="eventlist-overflow">
+          <table class="col-xs-12">
+            <tr>
+                <th class="col-xs-4">Date</th>
+                <th class="col-xs-4">Event Name</th>
+                <th class="col-xs-4">Event Type</th>
+            </tr>
+            <tr v-for='event in this.allEvents' v-on:click.prevent="updateCurrentEvent(event.eventName)">
+              <td class="col-xs-4"> {{ moment(event.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
+              <td class="col-xs-4"> {{ event.eventName}}</td>
+              <td class="col-xs-4"> {{ event.eventType }} </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <div class="col-xs-6 eventCreation">
@@ -121,6 +123,11 @@
     padding-left: 10px;
     padding-right: 10px;
     height: 500px;
+  }
+
+  .eventlist-overflow {
+    height: 430px;
+    overflow-y: auto;
   }
 
   .create {
