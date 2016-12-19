@@ -123,16 +123,15 @@ exports.addEvent = function(req, res) {
 exports.unjoinEvent = function(req, res) {
   console.log('rec\'d put request from front-end ', req.body )
   User.findOne({username: req.body.username}).exec(function(err,user) {
-    if(err) return res.status(400).send('Err! delete event');
-    console.log('user', user);
+    if(err) return res.status(400).send('Err occured when deleting event(s)!');
+
     for (var i = 0; i < user.events.length; i++) {
       if (user.events[i]._id===req.body.event._id) {
-        user.events.slice(i, 1);
+        user.events.splice(i, 1);
       }
     }
     user.save(function(err, user) {
       if(err) { return res.status(400).send('Err! save event') }
-        console.log('saved event deletion succesfully', user)
         res.send(204);
     })
   })

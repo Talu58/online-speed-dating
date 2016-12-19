@@ -75,16 +75,10 @@ var events = {
       var currentUserEvents = this.$store.state.user.events;
       var savedUserEvents = this.$store.state.savedEvents;
 
-      // console.log('currentUserEvents before', currentUserEvents)
-      // console.log('savedUserEvents before', savedUserEvents)
-
 //remove the chosen event out of the user's events collection
       for (var i = 0; i< currentUserEvents.length; i++) {
         if (currentUserEvents[i]._id === event._id) {
           currentUserEvents.splice(i, 1);
-          //savedUserEvents.splice(i, 1);
-          console.log('currentUserEvents after', currentUserEvents)
-          //this.$store.commit('addToSavedEvents', savedUserEvents);
         }
       }
       this.$store.commit('setEvents', currentUserEvents);
@@ -100,11 +94,9 @@ var events = {
         username: this.$store.state.user.username,
         event: event
       }
-      console.log('body', body);
 
       this.$http.put('/api/user/unjoinEvent', body, { headers: auth.getHeaders()})
       .then((res) => {
-        console.log('res',res);
         for (var i = 0 ; i < savedUserEvents.length; i++) {
           if (savedUserEvents[i]._id === event._id) {
             savedUserEvents.splice(i,1)
@@ -122,7 +114,6 @@ var events = {
       // })
       // .catch((err) => { console.error('error ', err); });
 
-//double check with romain to see if this works for persistency
     },
 
     moment: function (date) {
