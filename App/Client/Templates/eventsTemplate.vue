@@ -17,7 +17,7 @@
             <td> {{ item.eventName}}</td>
             <td> {{ item.eventType }} </td>
             <td v-if='hasNotJoined(item)' class='glyphicon glyphicon-ban-circle'></td>
-            <td v-else-if='!hasNotJoined(item)'><button v-on:click="unjoin(event)">Unjoin</button></td>
+            <td v-else-if='!hasNotJoined(item)'><button v-on:click="unjoin(item)">Unjoin</button></td>
 
         </tr>
         </table>

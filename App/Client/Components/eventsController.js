@@ -40,7 +40,6 @@ var events = {
     },
 
     join (event) {
-      console.log("EVENTS", this.$store.state.user)
       //handles event creation within users array
       var currentUserEvents = this.$store.state.user.events;
       var savedUserEvents = this.$store.state.savedEvents;
@@ -73,7 +72,50 @@ var events = {
     },
 
     unjoin(event) {
-      console.log('inside of unjoin event function')
+      var currentUserEvents = this.$store.state.user.events;
+      var savedUserEvents = this.$store.state.savedEvents;
+
+//basically the same thing, the 2 below:
+      console.log('currentUserEvents before', currentUserEvents)
+      // console.log('savedUserEvents before', savedUserEvents)
+
+//remove the chosen event out of the user's events collection
+      for (var i = 0; i< currentUserEvents.length; i++) {
+        if (currentUserEvents[i]._id === event._id) {
+          currentUserEvents.splice(i, 1);
+          //savedUserEvents.splice(i, 1);
+                console.log('currentUserEvents after', currentUserEvents)
+
+          this.$store.commit('setEvents', currentUserEvents);
+          //this.$store.commit('addToSavedEvents', savedUserEvents);
+        }
+      }
+//remove the current user out of the chosen event's user list
+      // if (event.usernames.includes(this.$store.state.user.username)) {
+      //   event.usernames.splice(this.$store.state.user.username)
+      // }
+
+      var body = {
+        username: this.$store.state.user.username,
+        event: event
+      }
+      console.log('body', body);
+
+      this.$http.put('/api/user/unjoinEvent', body, { headers: auth.getHeaders()})
+      .then((res) => {
+        console.log('res',res);
+      })
+      .catch((err) => {
+        console.error('error ', err);
+      });
+
+      // this.$http.put('/api/events', event, { headers: auth.getHeaders() } )
+      // .then((res) => {
+      //   this.getEvents();
+      // })
+      // .catch((err) => { console.error('error ', err); });
+
+//double check with romain to see if this works for persistency
     },
 
     moment: function (date) {

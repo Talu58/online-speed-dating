@@ -22,6 +22,9 @@ router.route('/user/events')
 router.route('/user/addEvent')
 .put(userHandler.addEvent)
 
+router.route('/user/unjoinEvent')
+.put(userHandler.unjoinEvent)
+
 router.route('/events')
 .get(eventHandler.getEvents)
 .post(eventHandler.postEvent)
