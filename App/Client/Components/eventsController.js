@@ -108,11 +108,11 @@ var events = {
         console.error('error ', err);
       });
 
-      // this.$http.put('/api/events', event, { headers: auth.getHeaders() } )
-      // .then((res) => {
-      //   this.getEvents();
-      // })
-      // .catch((err) => { console.error('error ', err); });
+      this.$http.put('/api/events', event, { headers: auth.getHeaders() } )
+      .then((res) => {
+        this.getEvents();
+      })
+      .catch((err) => { console.error('error ', err); });
 
     },
 

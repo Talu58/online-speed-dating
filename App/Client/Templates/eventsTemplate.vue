@@ -6,18 +6,15 @@
             <th>Next Event</th>
             <th>Event Name</th>
             <th>Event Type</th>
-            <th>Options</th>
 
         </tr>
         <tr v-for='item in result'>
             <td v-if='!$store.state.user.username'>Sign in to join!</td>
-            <td v-else-if='hasNotJoined(item)'><button v-on:click="join(item)">Join</button></td>
-            <td v-else class='glyphicon glyphicon-ok'></td>
+            <td v-else-if='hasNotJoined(item)'><button class="btn btn-success" v-on:click="join(item)">Join</button></td>
+            <td v-else-if='!hasNotJoined(item)'><button class="btn btn-danger" v-on:click="unjoin(item)">Unjoin</button></td>
             <td> {{ moment(item.date).format('MMMM Do YYYY, h:mm:ss a') }}  </td>
             <td> {{ item.eventName}}</td>
             <td> {{ item.eventType }} </td>
-            <td v-if='hasNotJoined(item)' class='glyphicon glyphicon-ban-circle'></td>
-            <td v-else-if='!hasNotJoined(item)'><button v-on:click="unjoin(item)">Unjoin</button></td>
 
         </tr>
         </table>
