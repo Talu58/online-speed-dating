@@ -12,7 +12,6 @@ var myProfile = {
       msg: `${this.$store.state.user.username} Welcome To Bash To The Dating!`,
       background: '../Images/background.jpg',
       savedEvents: this.$store.state.savedEvents,
-      // allEvents: this.$store.state.allEvents,
       profileImg: 'http://www.returnofkings.com/wp-content/uploads/2014/04/online-dating-header2.jpg',
       match: true,
       user: this.$store.state.user,
@@ -55,29 +54,6 @@ var myProfile = {
     goToAdmin () {
       this.$router.push('/admin');
     },
-    suggestedEvents:  function(arr) {
-      console.log('IN');
-      if(arr) {
-        var temp = [];
-        for (var i = 0; i < arr.length; i++) {
-          var belongsTo = false
-          for (var j = 0; j < arr.length; j++) {
-            if (arr[i].eventName === this.savedEvents[j].eventName) {
-              belongsTo = true;
-            }
-          }
-          if (!belongsTo) {
-            temp.push(arr[i]);
-          }
-        }
-        console.log('temp: ', temp);
-        return temp;
-      }
-    }
-  },
-  beforeUpdate: function() {
-    this.suggestedEvents(this.allEvents);
-  }
 
 };
 
